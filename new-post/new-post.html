@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MarkIt - New Listing</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css" />
+    <link type="text/css" rel="stylesheet" href="./new-post.css" />
+    <link href="../tag-plugin/textext.core.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.tags.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+  </head>
+  <body id="new-post-body">
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+    <main>
+      <div class="container">
+        <div id="new-post-main" class="z-depth-1"> 
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3" id="basic-info-tab"><a href="#basic-info">Basic Info</a></li>
+                <li class="tab col s3 disabled" id="preview-submit-tab"><a href="#preview-submit">Preview &amp; Submit</a></li>
+              </ul>
+            </div>
+            <div id="basic-info" class="col s12">  
+              <h4>Basic Info </h4>
+              <p id="current-hub">
+                Current Hub(s): <span id="current-hubs-signed-in"> NONE </span>(<a id="show-hub-link">change</a>)
+              </p>
+              <div class="divider"></div>
+              <!-- Post Section -->
+              <div class="row" id="left-input-form">
+                <div class="col l6 m12">
+                  <div class="row">
+                    <div class="col s12 m12 l6">
+                      <label for="item-post-title">Title</label>
+                      <input type="text" id="item-post-title" placeholder="e.g. Brand new iPhone 7">
+                    </div>
+                    <div class="col s12 m12 l6">
+                      <label for="item-post-price">Price</label>
+                      <input type="text" id="item-post-price" placeholder="e.g. 132.56">
+                    </div>
+                    <div class="col s12">
+                      <!-- <input id="description-field" type="text" placeholder="Description"> -->
+                      <label for="item-post-description">Description</label>
+                      <textarea id="item-post-description" placeholder="Give some more info about your item"></textarea>
+                    </div>
+                    <div id="stupid-box" class="col s12">
+                      <label for="itemTags">Tags - predefined tags will autofill for you! You can also use your own tags</label>
+                      <textarea id="itemTags" class="example" rows="1"></textarea>
+                    </div>             
+                  </div>                      
+                </div>
+                <!-- right side -->
+                <div id="dropzone">
+                  <div id="left-drop">
+                    <div class="hoverable" id="dropMain">
+                      Drag and Drop, or click to Add
+                    </div>
+                  </div>
+                  <div id="right-drop">
+                    <div class="drop hoverable">Drop image here</div>
+                    <div class="drop hoverable">Drop image here</div>
+                    <div class="drop hoverable">Drop image here</div>
+                  </div>
+                </div>
+                <input id="fileBox" type="file" />
+              </div>
+              <a id="post-preview" class="waves-effect btn-large modal-trigger">
+                Next
+              </a>
+            </div>
+            <!-- Preview Section -->
+            <div id="preview-submit" class="col s12">
+              <h4>Preview</h4>
+              <div class="row">
+                <div class="col s12 m12 l6">
+                  <div id="carousel-wrapper"></div>
+                </div>
+                <div class="col s12 m12 l6" id="preview-right-side">
+                  <div id="preview-first-line">
+                    <div id="preview-title"></div>
+                    <div id="preview-price">$</div>
+                  </div>
+                  <div class="divider"></div>
+                  <div id="preview-description"></div>
+                  <div id="preview-tags">
+                    <span id="preview-tag-blurb">Tags: </span>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-button-container">
+                <div>
+                  <a id="back-to-preview" class="waves-effect btn-large modal-trigger">
+                    < Make Changes
+                  </a>
+                </div>
+                <div>
+                  <a id="submit-post" class="waves-effect btn-large modal-trigger">
+                    Post Item!
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- change hub popup -->
+      <div id="hub-popup">
+        <div id="hub-popup-inner">
+          <h4> Hub Selection </h4>
+          <label for="hub-selection">Start typing, and select a college where you want your item
+            to appear! <br>You can post in up to 3 colleges at the same time.</label>
+          <textarea id="hub-selection" rows="1"></textarea>
+          <a class="waves-effect waves-light btn-large" id="submit-hub">Submit</a>
+          <br>
+          <a class="waves-effect waves-light btn-large white z-depth-0" id="cancel-hub">Cancel</a>
+        </div>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+    <!-- textext to be moved to webpack -->
+    <script src="../tag-plugin/textext.core.js"></script>
+    <script src="../tag-plugin/textext.plugin.tags.js"></script>
+    <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>
+  </body>
+</html>

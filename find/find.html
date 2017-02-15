@@ -1,0 +1,172 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>MarkIt - Find</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css">
+    <link href="../tag-plugin/textext.core.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.tags.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">     
+    <link type="text/css" rel="stylesheet" href="./find.css"  media="screen,projection"/>
+   
+  </head>
+
+  <body id="find-body">
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+
+    <main>
+      <!-- search card -->
+      <div class="row">
+        <div id="find-search" class="col l9 m12 s12 z-depth-1">
+          <div class="row search-top">
+            <div class="input-field col l4 m4 s12">
+              <input id="find-keywords" type="text" class="validate" length="24" placeholder="Enter a few words">
+              <label for="find-keywords">Keywords</label>
+            </div>
+            <div class="input-field col l4 m4 s12">
+              <textarea id="find-tags" rows="1" placeholder="(e.g. furniture, Apple, living-room)"></textarea>
+              <label for="find-tags">Tags</label>
+
+            </div>  
+            <div class="input-field col l4 m4 s12">
+              <select id="find-hubs" multiple>
+                <option value="" disabled selected>Choose Hub(s)</option>
+                <option value="Loyola Marymount University">Loyola Marymount University</option>
+                <option value="UCLA">UCLA</option>
+              </select>
+              <label>Select College Campuses</label>
+            </div>                 
+          </div>
+          <div class="search-slider-title">
+            Price Range
+          </div>
+          <div id="search-slider">
+          </div>  
+          <a id="find-search-button" class="waves-effect waves-light btn">Search</a>      
+        </div>
+      </div>
+      <!-- results card -->
+      <div class="row">
+        <div id="find-content" class="col l9 m12 s12 z-depth-1">
+          <div id="find-content-presearch">
+            <img id="find-search-image" src="../media/ic_search.png">
+            <h6> Please enter some search criteria to see some results. <br><br>Only The Hub field is required, and you can add up to 3 hubs.</h6>
+          </div>
+          <div id="find-results-holder"></div>
+          <script type="text/template" id="find-results-template">
+            <% for (var specificItem in filteredItemList) { %>
+            <%     var item = filteredItemList[specificItem] %>
+            <div class="col l4 m6 s12">
+              <div class="card find-result hoverable">
+                <div class="find-result-favorite">
+                  <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid=<%- item['id'] %>>
+                </div>
+                <div class="find-result-price">
+                  $ <%- item['price'] %>
+                </div>
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="" id=<%- item['id'] %>>
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
+                  <p>
+                    <a href="#">view item</a>
+                    <span class="card-view-hub"><%- item['hubs'] %></span>
+                  </p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">
+                    Description<i class="material-icons right">close</i>
+                    <p><%- item['description'] %></p>
+                  </span>
+                  <a class="waves-effect waves-light btn green lighten-2 card-contact">Contact Seller</a>
+                </div>
+              </div>
+            </div>
+            <% }; %>
+          </script>
+        </div>
+      </div>
+      <div class="z-depth-1" id="find-favorite-panel">
+        <!-- logged out -->
+        <div id="find-favorite-logged-out">
+          <img id="find-search-image" src="../media/ic_id.png" alt="profileicon">
+          <h6> Sign in to see your favorite items and tags.</h6>
+        </div>
+        <!-- logged in -->
+        <div class="row" id="find-favorite-logged-in">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s6"><a href="#profile-favorites">Favorites</a></li>
+              <li class="tab col s6"><a href="#profile-tags">Tags</a></li>
+            </ul>
+          </div>
+          <div id="profile-favorites"> 
+            <div id="favorite-holder"></div>
+            
+            <script type="text/template" id="favorite-template">
+              <%for (var favorite of favorites) { %>
+                <div class="favorite-element">
+                  <div class="favorite-image">
+                    <img class="responsive-img" src=<%- favorite['imageURL'] %>>
+                  </div>
+                  <div class="favorite-body">
+                    <div class="favorite-title">
+                      <%- favorite['title'] %>
+                    </div>
+                    <div class="favorite-description">
+                      <%- favorite['description'] %>
+                    </div>
+                    <div class="favorite-timeRemaining">
+                    </div>
+                  </div>
+                </div>
+                <div class="divider"></div>
+              <% }; %>
+            </script>
+
+          </div>
+          <div id="profile-tags" class="col s12">
+            list of tags with red number. when clicked will display
+            all the relevant items you are tracking :)
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Contact Seller popup -->
+
+      <div id="message-popup">
+        <div id="message-popup-inner">
+          <div class="close-button grey-text right-align"><i class="small material-icons">close</i></div>
+          <div id="message-popup-content">
+            <h2 class="red-text text-lighten-2 ">
+              Message
+            </h2>
+            <p class="grey-text"> Please type your message to the seller</p>
+            <textarea id="message-popup-text">Hey there, I'm interested in your item, what are your availabilities to meet up?</textarea>
+            <a id="message-popup-send-button" class="waves-effect waves-light btn-large right green lighten-2">Send Message</a>
+          </div>
+          <div id="message-popup-confirmation">
+            <h1 id='message-popup-confirmation-text'>Message Sent</h1>
+            <i class="material-icons large green-text " id="message-popup-checkmark">check_circle</i>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
+    <script src="../tag-plugin/textext.core.js"></script>
+    <script src="../tag-plugin/textext.plugin.tags.js"></script>
+    <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>    
+  </body>
+</html>

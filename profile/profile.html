@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MarkIt - Profile</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+    <link type="text/css" rel="stylesheet" href="./profile.css"  media="screen,projection"/>
+  </head>
+
+  <body id="profile-body">
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+
+    <main>
+      <div class="container profile-container">
+        <div class="profile-card-view">
+          <div id="my-profile">
+            <img class="my-profile-hub" src="http://admin.lmu.edu/media/admin/parking/mainbanner-parking.jpg">
+            <!-- TODO: Make a mouseover profile image shader  -->
+            <!-- <img id="profile-picture-overlay" class="my-profile-picture-overlay z-depth-1 circle"> -->
+            <!-- <a class="btn-floating btn-small waves-effect waves-light scale-transition scale-out" id="add-photo-button">
+                <i class="material-icons">add_a_photo</i>
+            </a> -->
+            <div id="profile-picture-position">
+                <img id="profile-picture" class="my-profile-picture z-depth-1 circle" src="../media/ic_profile.png">
+                <div id="profile-picture-overlay">
+                  <div class="file-field">
+                      <a class="btn-floating waves-effect waves-light black add-photo-button" id="add-photo-button">
+                          <i class="material-icons" id="add-photo-icon">add_a_photo</i>
+                      </a>
+                    <!-- <a class="btn btn-large waves-effect waves-light add-photo-button" id="add-photo-button"><i class="material-icons">add_a_photo</i></a> -->
+                    <input hidden id="add-photo-input" type="file">
+                  </div>
+                </div>
+            </div>
+            <span class="my-profile-username"></span>
+            <div class="my-profile-stars">
+              <i class="material-icons star-1">star_rate</i>
+              <i class="material-icons star-2">star_rate</i>
+              <i class="material-icons star-3">star_rate</i>
+              <i class="material-icons star-4">star_rate</i>
+              <i class="material-icons star-5">star_rate</i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a id="liked-tab" class="active" href="#profile-liked"><i class="material-icons center-icon">favorite</i></a></li>
+            <li class="tab"><a id="selling-tab" href="#profile-selling"><i class="material-icons center-icon">shop</i></a></li>
+            <li class="tab"><a id="tagslist-tab" href="#profile-tagslist"><i class="material-icons center-icon">assignment</i></a></li>
+            <li class="tab"><a id="messages-tab" href="#profile-messages"><i class="material-icons center-icon">message</i></a></li>
+            <li class="tab"><a id="settings-tab" href="#profile-settings"><i class="material-icons center-icon">settings</i></a></li>
+          </ul>
+      </div>
+
+      <div class="container container-margin" id="profile-liked">
+        <div class="profile-card-view tab-content z-depth-1">
+          <div class="col s12" id="tab-header">
+            <h4 id="tab-header-text">Favorites</h4>
+          </div>
+          <div class="row" id="profile-liked-holder"></div>
+          <script type="text/template" id="profile-liked-items">
+            <% for (var specificItem in items) { %>
+            <%     var item = items[specificItem] %>
+              <div class="col l3 m4 s12">
+                <div class="card find-result hoverable">
+                  <div class="find-result-favorite">
+                    <img class="find-result-favorite-image" src="../media/ic_heart_hover.png" alt="heart" uid="-KX9VmJ19Y8zpIjItajK">
+                  </div>
+                  <div class="find-result-price">
+                    $ <%- item['price'] %>
+                  </div>
+                  <div class="hub-recent card-image waves-effect waves-block waves-light">
+                    <img class="activator" <%- src= item['imageURL']%> uid= <%-item['id']%>>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> <%- item['title'] %> <i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">view item</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Description<i class="material-icons right">close</i>
+                      <p> <%- item['description'] %> </p>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <% }; %>
+          </script>
+        </div>
+      </div>
+
+      <div class="container container-margin" id="profile-selling">
+        <div class="profile-card-view tab-content z-depth-1">
+          <div class="col s12" id="tab-header">
+            <h4 id="tab-header-text">Selling</h4>
+          </div>
+          <div class="row" id="profile-selling-card-list">
+            <div id="profile-selling-holder" class="row"> </div>
+            <script type="text/template" id="profile-selling-template">
+              <% for (var specificItem in filteredItemList) { %>
+              <%     var item = filteredItemList[specificItem] %>
+              <div class="col l4 m6 s12">
+                <div class="card find-result hoverable">
+                  <% if (item.hasOwnProperty('sold') && item['sold'] === true) { %>
+                    <div class="sold-item-layer"><img src='../media/sold.png'> </div>
+                  <% } else { %>
+                    <a  class="waves-effect waves-light btn selling-sold-button">Mark as Sold</a>
+                  <% } %>
+                  <div class="find-result-price">
+                    $ <%- item['price'] %>
+                  </div>
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="" id=<%- item['id'] %>>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
+                    <p>
+                      <a href="#">view item</a>
+                      <span class="card-view-hub"><%- item['hubs'] %></span>
+                    </p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Description<i class="material-icons right">close</i>
+                      <p><%- item['description'] %></p>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <% }; %>
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="container container-margin" id="profile-tagslist">
+        <div class="tagslist tab-content z-depth-1">
+          <div class="col s12" id="tab-header">
+            <h4 id="tab-header-text">Watching List</h4>
+            <div class="add-button">
+              <a id="add-tag-button" class="btn-floating btn-large waves-effect waves-light green lighten-2"><i class="material-icons">add</i></a>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col s12">
+              <div id="watch-list-placeholder">
+                <img id="watch-list-placeholder-image" src="../media/ic_visibility_off_black_48px.svg">
+                <!-- <i id="watch-list-placeholder-image" class="material-icons">visibility_off</i> -->
+                <h6> You don't have any items in your watch list. <br><br> Use the add button to add items you're interested in.</h6>
+              </div>
+            <!-- <span id="construction">Page Under Construction.</span> -->
+          </div>
+            <!-- <a id="add-tag-button" class="waves-effect waves-light btn col s3 offset-s1"><i class="material-icons left">add_circle_outline</i>Add Search Item!</a> -->
+            <!-- <div class="tag-item-create">
+              <div class="input-field col s8 offset-s1">
+                <input id="tag-item-name" value="" type="text" class="validate">
+                <label for="tag-item-name">Search Term Title</label>
+              </div>
+              <div class="input-field col s8 offset-s1">
+                <input id="tag-1" value="" type="text" class="validate">
+                <label for="tag-1">Tag</label>
+              </div>
+              <div class="input-field col s8 offset-s1">
+                <input id="tag-2" value="" type="text" class="validate">
+                <label for="tag-2">Tag</label>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- messages -->
+      <div class="container container-margin" id="profile-messages">
+        <div class="profile-message-tab z-depth-1">
+          <div id="messages-header">
+            <h4>Messages</h4>
+            <a class="btn-floating btn-large waves-effect waves-light green lighten-2" id="messages-offer-button"><i class="material-icons">attach_money</i></a>
+          </div>
+          <div class="row">
+            <div class="col s4" id="profile-messages-left">
+              <div id="messages-preview-holder"></div>
+              <script type="text/template" id="messages-preview-template">
+                <% for (let i = 0; i < previewMessages.length; i +=1) { %>
+                  <div class="message-preview" chatid=<%- previewMessages[i].messageID%> >
+                    <div class="message-preview-timestamp"><%- previewMessages[i].timeStamp %></div>
+                    <div class="message-preview-time"><%- previewMessages[i].time %></div>
+                    <div class="message-preview-last"> <%- previewMessages[i].lastMessage %> </div>
+                    <img class="circle message-preview-image" src=<%- previewMessages[i].picture %> alt="item-image">
+                    <p class="message-preview-username">
+                      <%- previewMessages[i].user %>
+                      <span class="message-preview-title">
+                        (<%- previewMessages[i].title %>)
+                      </span>
+                    </p>
+                    <span class='messages-preview-unread'>
+                    <% if (!previewMessages[i].readStatus) { %>
+                      <i class="material-icons">info</i>
+                    <% } %>
+                    </span>
+                  </div>
+                <% } %>
+              </script>
+            </div>
+            <div class="col s8" id="profile-messages-right">
+              <div id="message-offer-popup" class="invisible-div">
+                <p id="message-offer-blurb">Make an Offer</p>
+                <input class="valign" placeholder="$ 55.50" id="message-offer-value">
+                <a class="waves-effect waves-light btn green lighten-2" id="message-offer-button"><i class="material-icons">send</i></a>
+
+              </div>
+              <div id="message-detail-content">
+              </div>
+              <div id="message-send-outer" class="row valign-wrapper">
+                <div class="col l10 m9 s8">
+                  <input class="valign" placeholder="Type a message" id="message-send-text">
+                </div>
+                <div class="col l2 m3 s4">
+                  <a class="waves-effect waves-light btn" id="message-send-button"><i class="material-icons">send</i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- settings -->
+      <div class="container container-margin" id="profile-settings">
+        <div class="tab-content z-depth-1">
+          <div class="col s12" id="tab-header">
+            <h4 id="tab-header-text">Settings</h4>
+          </div>
+          <div class="row">
+            <div class="settings-button">
+              <a id="edit-button" class="waves-effect waves-light btn col s2 offset-s10"><i class="material-icons left">mode_edit</i>Edit</a>
+            </div>
+            <div class="settings-button">
+              <a id="save-button" disabled class="waves-effect waves-light btn col s2 offset-s10"><i class="material-icons left">save</i>Save</a>
+            </div>
+
+            <div class="single-setting">
+              <div class="input-field col s4 offset-s2">
+                <input disabled value="Sample" id="profile-first-name" type="text" class="validate">
+                <label for="profile-first-name">First Name</label>
+              </div>
+              <div class="input-field col s4">
+                <input disabled value="Text" id="profile-last-name" type="text" class="validate">
+                <label for="profile-last-name">Last Name</label>
+              </div>
+            </div>
+
+            <div class="single-setting">
+              <div class="input-field col s8 offset-s2">
+                <input disabled value="Sample Text" id="profile-user-name" type="text" class="validate">
+                <label for="profile-user-name">Username</label>
+              </div>
+            </div>
+
+            <div class="single-setting">
+              <div class="input-field col s8 offset-s2">
+              <select disabled id="profile-hub-name">
+                <option value="" disabled selected>Choose Hub(s)</option>
+                <option value="Loyola Marymount University">Loyola Marymount University</option>
+                <option value="UCLA">UCLA</option>
+              </select>
+              <label>Select College Campuses</label>
+            </div>
+            </div>
+
+            <div class="final-setting single-setting">
+              <div class="input-field col s8 offset-s2">
+                <select disabled id="profile-payment-preference" multiple>
+                  <option value="" disabled selected>Choose Preferences</option>
+                  <option value="cash">Cash</option>
+                  <option value="card">Card</option>
+                  <option value="check">Check</option>
+                  <option value="googleWallet">Google Wallet</option>
+                  <option value="paypal">Paypal</option>
+                  <option value="venmo">Venmo</option>
+                </select>
+                <label>Payment Preferences</label>
+              </div>
+            </div>
+
+        <!--     <div class="single-setting">
+              <div class="col s8 offset-s2">
+                <input disabled type="checkbox" class="filled-in" id="email-notifications" />
+                <label for="email-notifications">Send Email Notifications</label>
+              </div>
+            </div>
+
+            <div class="final-setting single-setting">
+              <div class="input-field col s8 offset-s2">
+                <input disabled value="DankMemes" id="profile-password" type="password" class="validate">
+                <label for="profile-password">Password</label>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
+  </body>
+</html>

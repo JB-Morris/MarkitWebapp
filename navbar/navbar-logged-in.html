@@ -1,0 +1,87 @@
+<ul id="profile-drop" class="dropdown-content">
+  <li><a href="../profile/profile.html#notifications" id="navbar-notifications">Notifications</a></li>
+  <li><a href="../profile/profile.html#messages" id="navbar-message">Messages</a></li>
+  <li><a href="../profile/profile.html#settings" id="navbar-settings">Settings</a></li>
+  <li><a href="#../profile/profile.html#help">Help</a></li>
+  <li class="divider"></li>
+  <li><a href="#!" id="navbar-logout-button">Logout</a></li>
+</ul>
+<!-- start nav -->
+<nav class="z-depth-1">
+    <div class="nav-wrapper">
+      <a href="../index.html" class="brand-logo left"><img class="brand-logo-nav-pic" src="../media/logo.png"></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      <ul class="right hide-on-med-and-down navbar-buttons">
+        <li id="navbar-searchbar">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" placeholder="find an item" required>
+              <label for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </li>
+        <li><a href="../new-post/new-post.html">Sell Now</a></li>
+        <li><a href="../find/find.html">Find</a></li>
+        <li><a href="../hub/hub.html">My Hub</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" data-activates="profile-drop" href="../profile/profile.html" 
+          data-hover="true" data-belowOrigin="true" data-constrainwidth="false"><img src="../media/ic_profile.png" id="navbar-user-photo"/>
+          <span id="profile-name"></span></a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li id="navbar-searchbar">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" placeholder="find an item" required>
+              <label for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </li>
+        <li><a href="../new-post/new-post.html">Sell Now</a></li>
+        <li><a href="../find/find.html">Find</a></li>
+        <li><a href="../hub/hub.html">My Hub</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="collapsible-header active waves-effect waves-teal" href="../profile/profile.html"><img src="../media/ic_profile.png" id="navbar-user-photo"/>Your Profile</a></li>
+        <div class="collapsible-body" style="display: block;">
+          <ul>
+            <li><a href="../profile/profile.html#notifications" id="navbar-notifications" class="side-nav-less">Notifications</a></li>
+            <li><a href="../profile/profile.html#messages" id="navbar-message" class="side-nav-less">Messages</a></li>
+            <li><a href="../profile/profile.html#settings" id="navbar-settings" class="side-nav-less">Settings</a></li>
+            <li><a href="#../profile/profile.html#help" class="side-nav-less">Help</a></li>
+          </ul>
+        </div>
+        <li class="divider"></li>
+        <li><a href="#!" id="navbar-logout-button">Logout</a></li>
+      </ul>
+    </div>
+</nav>    
+<!-- end nav -->
+
+<!-- custom login pop up -->
+<div id="login-popup">
+  <div id="login-popup-inner">
+    <fb:login-button class="login-popup-inner-items" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+    <a class="waves-effect waves-light btn login-popup-inner-items"><i class="material-icons left"></i>Log in with Google</a>
+    <div class="crossline-wrapper">
+      <div> or </div>
+    </div>
+    <div class="row">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate">
+            <label for="email">Username</label>
+          </div>
+        </div>    
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+    </div>
+    <a class="waves-effect waves-light btn login-popup-inner-items" id="sign-in-button">Log in</a>
+  </div>
+</div>

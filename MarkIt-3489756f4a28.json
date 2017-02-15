@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "markit-80192",
+  "private_key_id": "3489756f4a283ecccda07c75027f94712fe44666",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCp90vUPOXeMPgr\nlPy0FkP6MMQktWysIvCzRd1KfNnvuPSo6w5OMCNZA/1bjATY4aL5SaZtXGLLX96k\nnpOnJUUCpkcNCrMMkYI6nO7Srz52RPhm9fbEhc7W6z3xY8dOtzWHjxrIKywPiEyt\niPGcAY58HKupX7u9JjvHd4EeiCxO6LpJFv9pTwaZsr4gz8qk542hEy7PeIxBYNHA\nSHhTPWypM4TOly6WieXZG5bTrhSGUE7ZRKKYUT/r75jJ8fo0NfcrMwvxOGQRNzSt\n+JJowMiQixvOVxp4d7MjNw0nwEUhsBo6HIQKFCjMiVFEO//irwgAEk3PjBPhGTjo\nYxa1YSDTAgMBAAECggEAeyeMU3H44aG8AOBIpzjG8r9pMGwhHS2IGW5TJUkIJVJw\nPQFs8SyiQDrK1w3C6V+9VkKOjAl4MIL78W5R8LfppDzVmNaa3E2G/m9+AT0n1kyt\nbPVmZAnM0R/NV16EKT5JVDtWHZpip7KMVOW4o+Dg3H9txyFuCGVuxV6LOZNT/6wm\nHBkfXDDAX8x+0hwaoa4RJC2NqJG+vhETx7cU6sgyxfZCCjLVCcpGRFZA7q4T5CY7\nUyjc/Md0pvkn25oho9btvFwD306VxsYC780Oh4pGFkiRrah4+cg9CHbwf1a6/SHi\ns9vRAtVSFLacrSDfQtv83XA7caRGQdFIYIbQFgOO2QKBgQDRQMI2/jbsQOPlc8sF\nVfp+E8fx2HPq0m6CBP38YDxa0o7D4pWTgMQIDQ3bWaPDptPDbA3RA/LdDMK5OKEE\nM78rn+PHrAnL3uYXAr44KmhQGg4YaYRJAOXJOhpUTNTHhUnjCktYEjNCxXoWcxCT\nYUzziqhAS401iTwfev66/vCb7QKBgQDP77Q+S452q1l6CNOwAoQuSM8V4T9McjLA\nEyBd3lRKyv+7MxuyXBzB5UfNW936SEfOzPNz3B6t1gRgnhOh2AdjVeiCMF7X0vD7\nDJgKP9nJBw8sQYn3h/v4ia/pUBoKLN87hGBv2l3d2W1ATnPLlOWjAPri/LHvUZ43\n3vvTDvSXvwKBgFaRrQelSkGZYu8lZYOSm2wXcOu7+dDXOAKwYAdOJQoJ/ChMEEeS\nyQbvp6Dsx9SEqy05AcpMEOikg9au9+ZOJjO9FTYhFXhzgctZRirkWH1zGgu9c43k\nQixqzkO7+XeFzBiSxLLt7KkeG7E3706ZvYUwAwV+fC/+05HOh54DJLXNAoGACzjj\noG0RfkQXKyfozNoF6j2Rt5uVf/m11XnyyD4kjHjSPncuqnygLLLEIkgv/b8C6R1U\nkk8x9K3VRKWjZ5uyImFTkBsuMzW2PcZbOkph5aCU6A2NdaeIKMy9irkA/sWXMq4d\nSkwdvshqRgs14qnhjt+Rqsh6jfD4ugk1zBlFiB8CgYEAgZHzWZuqdO33o83xrb1A\nHf3YkdIj5KBlfoeS7zegdkOHZe4yGSO3iA+Zbs5A4eT9fcvqInegoiy4aWkaWfCv\nh7p2iFS33sWZjvb2gd5CdEL3nuU5R0fp3uRpMS4Lez9Y9/HNMEWae24a0wYKYVxD\nOg/S5mqoaL+1zCuyTiVWmYE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "markit-webapp@markit-80192.iam.gserviceaccount.com",
+  "client_id": "100394206378796623796",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/markit-webapp%40markit-80192.iam.gserviceaccount.com"
+}

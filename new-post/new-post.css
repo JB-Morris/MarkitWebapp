@@ -1,0 +1,275 @@
+/*NEW POST MAIN*/
+
+body {
+    background-color: #eeeeee;
+    color: #000;
+}
+
+#preview-right-side {
+    min-height: 200px;
+}
+
+
+#preview-title {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#preview-submit .row {
+    display: flex;
+    position: relative;
+}
+
+#preview-tags {
+    position: absolute;
+    bottom: 0;
+}
+
+#preview-first-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+#preview-description {
+    margin-top: 10px;
+}
+
+#preview-tag-blurb {
+    font-size: 12px;
+}
+
+#preview-price {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #AED581;
+}
+
+#preview-button-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#back-to-preview {
+    background-color: #F44336;
+}
+
+#submit-post {
+    background-color: #AED581;
+}
+
+#show-hub-link {
+    cursor: pointer;
+}
+
+#carousel-wrapper {
+    margin-top: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: #546A76;
+}
+
+.container {
+    width: 80%;
+}
+
+#new-post-body .input-field label {
+    color: #AAAAAA;
+}
+
+#new-post-body main {
+    padding: 30px 0px 0px 0px;
+}
+
+#post-preview {
+    color: #fff;
+    background-color: #546A76;
+    float: right;
+    min-width: 200px;
+}
+
+#post-preview:hover {
+    color: #fff;
+    background-color: #559BFF;
+    float: right;
+    min-width: 200px;
+}
+
+#new-post-main {
+    padding: 20px 30px 20px 30px;
+    background-color: white;
+}
+
+input[type=text] {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+input[type=text]:focus:not([readonly]) {
+   border-color: rgba(0, 0, 100, 0.4);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 255, 0.6);
+  outline: 0 none;
+}
+
+#left-input-form {
+    margin-top: 15px;
+}
+
+#itemTags {
+    height: 50px;
+}
+
+#item-post-description {
+    height: 150px;
+    resize: none;
+    padding-left: 10px;
+}
+
+#item-post-title {
+    padding-left: 10px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+#item-post-price {
+    padding-left: 10px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+
+/*drophub*/
+#dropzone {
+    background-color: #fff;
+    border: 3px dashed #F4A49D;
+    border-radius: 10px;
+    height: 340px;
+    display: -webkit-flex;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+#left-drop {
+    height: 100%;
+    width: 60%;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#right-drop {
+    height: 100%;
+    width: 40%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#dropMain {
+    background-color: #F4A49D;
+    color: #fff;
+    border-radius: 10px;
+    height: 60%;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dropMain img {
+    max-width: 100%;
+}
+
+.drop {
+    background-color: #F4A49D;
+    color: #fff;
+    border-radius: 10px;
+    height: 28%;
+    margin-bottom: 10%;
+    flex: 1;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop img {
+    max-width: 100%;
+}
+
+#fileBox {
+    display: none;
+}
+/*end drophub*/
+
+
+#hub-popup {
+    z-index: 10;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#hub-popup-inner {
+    margin: 0 auto;
+    margin-top: 10%;
+    width: 70%;
+    height: 30%;
+    min-height: 550px;
+    background-color: #fff;
+    text-align: center;
+    padding: 50px 30px 30px 30px;
+}
+
+#hub-popup-inner h4 {
+    color: #F4A49D;
+}
+
+#hub-selection {
+    height: 50px;
+    position: absolute;
+    left: 0;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 40px;
+}
+
+.hub-card {
+    background-color: #66ACFF;
+    font-size: 12px;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#submit-hub {
+    background-color: #559BFF;
+    margin-top: 30px;
+}
+
+#submit-hub:hover {
+    background-color: #66ACFF;
+}
+
+#cancel-hub {
+    margin-top: 10px;
+    color: #000;
+    font-size: 12px;
+}
+
+#cancel-hub:hover {
+    color: #0000ff;
+}

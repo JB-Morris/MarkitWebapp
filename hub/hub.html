@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MarkIt - Hub</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css">
+    <link type="text/css" rel="stylesheet" href="./hub.css"  media="screen,projection"/>
+  </head>
+
+  <body>
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+
+    <main>
+
+      <div class="parallax-container">
+        <div class="parallax"><img src="http://admin.lmu.edu/media/admin/parking/mainbanner-parking.jpg"></div>
+      </div>
+      <div class="container">
+        <div class="section white" id="hub-first-divider">
+          <a id="hub-change-button" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">business</i></a>
+          <h2 class="header">Hi, <span id="hub-username-blurb"></span></h2>
+          <p>
+            Welcome to your hub! 
+          </p>
+          <p id="hub-intro-blurb">
+            Below are some relevant items for sale, users, and general information that's currently
+            going on at your campus! Switch hubs by clicking the hub button on the right. You can choose up to 5
+            categories that will be shown for your hub, by clicking the settings button.
+          </p>
+        </div>
+        <div class="divider"> </div>
+        <!-- Most Recent items -->
+        <p class="hub-categories"> Most Recent Items</p>
+        <div class="row">
+          <div id="hub-recent-holder"></div>
+          <script type="text/template" id="hub-most-recent">
+            <% for (var specificItem in items) { %>
+            <%     var item = items[specificItem] %> 
+              <div class="col l3 m4 s12">
+                <div class="card find-result hoverable">
+                  <div class="find-result-favorite">
+                    <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid="-KX9VmJ19Y8zpIjItajK">
+                  </div>
+                  <div class="find-result-price">
+                    $ <%- item['price'] %>
+                  </div>
+                  <div class="hub-recent card-image waves-effect waves-block waves-light">
+                    <img class="activator" <%- src= item['imageURL']%> uid= <%-item['id']%>>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> <%- item['title'] %> <i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">view item</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Description<i class="material-icons right">close</i>
+                      <p> <%- item['description'] %> </p>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            <% }; %>
+          </script>
+        </div>
+        <div class="see-more right-align" id="see-new-items"> <a href="">See More...</a></div>
+        <div class="divider"> </div>
+        <!-- Suggested Items -->
+        <p class="hub-categories">Suggested Items</p>
+        <div class="row">
+          <div id="hub-suggestions-holder">
+            <div id="suggestions-blurb">
+              Sorry, no suggestions, favorite some items!
+              <br><img class="responsive-img" src="../media/sad-face.png">
+            </div>
+          </div>
+          <script type="text/template" id="hub-suggested">
+            <% for (var specificItem in itemsObject) { %>
+            <%     var item = itemsObject[specificItem] %>
+              <div class="col l3 m3 s12">
+              <div class="card find-result hoverable">
+                <div class="find-result-favorite">
+                  <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid=<%- item['id'] %>>
+                </div>
+                <div class="find-result-price">
+                  $ <%- item['price'] %>
+                </div>
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="" id=<%- item['id'] %>>
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
+                  <p>
+                    <a href="#">view item</a>
+                    <span class="card-view-hub"><%- item['hubs'] %></span>
+                  </p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">
+                    Description<i class="material-icons right">close</i>
+                    <p><%- item['description'] %></p>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <% }; %>
+          </script>           
+        </div>
+
+        <div class="divider"></div>
+        <!-- Most Favorited items -->
+        <p class="hub-categories"> Most Popular Items</p>
+        <div class="row">
+
+        </div>
+
+             
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
+  </body>
+</html>

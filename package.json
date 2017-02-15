@@ -1,0 +1,31 @@
+{
+  "name": "thrifti",
+  "version": "1.0.0",
+  "description": "marketplace for students, by students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VicFrolov/Markit.git"
+  },
+  "keywords": [
+    "thrifti",
+    "markeet",
+    "caml"
+  ],
+  "author": "victor frolov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VicFrolov/Markit/issues"
+  },
+  "homepage": "https://github.com/VicFrolov/Markit#readme",
+  "devDependencies": {
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "firebase": "^3.5.2",
+    "wnumb": "^1.0.4"
+  }
+}

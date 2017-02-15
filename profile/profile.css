@@ -1,0 +1,612 @@
+main, body {
+    height: 100%;
+    background-color: #eeeeee;
+}
+
+#construction {
+    padding-left: 20px;
+}
+
+#profile-body {
+    height: 100%;
+    width: 100%;
+}
+
+.profile {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px 10px 10px 10px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.profile-container {
+    height: 70%;
+}
+
+.container {
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+}
+.profile-name {
+    margin-top: 20px;
+}
+
+#my-profile {
+    margin-top: 20px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.tabs {
+    overflow: hidden;
+}
+
+.center-icon{
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+.container-margin {
+    margin-top: 20px;
+}
+
+/*card view*/
+
+.card .card-title {
+    font-size: 16px;
+}
+
+.card .card-image {
+    height: 200px;
+}
+
+
+.card {
+    margin: 20px 10px 20px 10px;
+    position: relative;
+}
+
+.card-contact {
+    position:absolute;
+    bottom: 30px;
+    width: 88%
+}
+.card-view-hub {
+    float: right;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+/*end card view*/
+
+.my-profile-hub {
+    height: 300px;
+    width: 100%;
+}
+
+#profile-picture-position {
+    position: absolute;
+    top: 285px;
+}
+
+.my-profile-picture {
+    background-color: #eee;
+    height: 100px;
+    width: 100px;
+    margin: 12px;
+    position: relative;
+}
+
+.my-profile-username {
+    font-size: 36px;
+    position: relative;
+    bottom: 80px;
+    left: 110px;
+    color: white;
+    margin: 12px;
+}
+
+.my-profile-stars {
+    position: relative;
+    bottom: 40px;
+    left: 150px;
+}
+
+.star-1 {
+    position: relative;
+    bottom: 50px;
+    right: 30px;
+    color: gold;
+    width: 25px;
+}
+
+.star-2 {
+    position: relative;
+    bottom: 50px;
+    right: 30px;
+    color: gold;
+    width: 25px;
+}
+
+.star-3 {
+    position: relative;
+    bottom: 50px;
+    right: 30px;
+    color: gold;
+    width: 25px;
+}
+
+.star-4 {
+    position: relative;
+    bottom: 50px;
+    right: 30px;
+    color: gold;
+    width: 25px;
+}
+
+.star-5 {
+    position: relative;
+    bottom: 50px;
+    right: 30px;
+    color: gold;
+    width: 25px;
+}
+
+.profile-card-view {
+    background-color: #fff;
+}
+
+.profile-favorite {
+    position: absolute;
+    top: 1%;
+    right: -3%;
+    z-index: 3;
+}
+
+.profile-favorite-image {
+    width: 75%;
+    height: auto;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.add-photo-position {
+    position: absolute;
+}
+
+
+#add-photo-button {
+    opacity: 0;
+    margin-top: -161px;
+    margin-left: 12px;
+    height: 102px;
+    width: 102px;
+}
+
+#add-photo-button:hover {
+    opacity: .3;
+}
+
+#add-photo-icon {
+    margin-top: 30px;
+    margin-left: -2px;
+}
+
+.add-photo-button {
+    maragin: 12;
+    cursor: pointer;
+}
+
+.profile-price {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    font-size: 1.1rem;
+    z-index: 3;
+    color: #fff;
+    pointer-events: none;
+}
+
+.notification {
+    margin: 12px;
+}
+
+.tab-content {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ccc;
+    background-color: white;
+}
+
+.tagslist {
+    background-color: #fff;
+}
+
+#add-tag-button {
+    position: absolute;
+    right: 20px;
+    top: 6px;
+    margin-bottom: 30px;
+}
+
+#tab-header {
+    position: relative;
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #ccc;
+    bottom: 20px;
+}
+
+#tab-header-text {
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.settings {
+    background-color: #fff;
+}
+
+#profile-messages .tab-content {
+    background-color: #fff;
+    height: 600px;
+}
+
+.single-setting {
+    margin-bottom: 20px;
+}
+
+.settings-button {
+    position: relative;
+    padding: 20px;
+}
+
+.final-setting {
+    margin-bottom: 350px;
+}
+
+.card .card-title {
+    font-size: 16px;
+}
+
+.card .card-image {
+    height: 200px;
+}
+
+
+.card {
+    margin: 20px 10px 20px 10px;
+    position: relative;
+}
+
+.find-result-price {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    font-size: 1.1rem;
+    z-index: 3;
+    color: #fff;
+    pointer-events: none;
+}
+
+.find-result-favorite {
+    position: absolute;
+    top: 1%;
+    right: -3%;
+    z-index: 3;
+}
+
+.find-result-favorite-image {
+    width: 75%;
+    height: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+#profile-messages-left {
+    padding-right: 0px;
+    padding-left: 0px;
+    overflow-y: scroll;
+    height: 500px;
+    border-top: 1px solid #eee;
+}
+/* messages css */
+
+.profile-message-tab {
+    background-color: #fff;
+    margin-bottom: 100px;
+}
+
+.profile-message-tab h4 {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+
+.message-preview {
+    height: 100px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.message-preview:hover {
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+.active-message {
+    background-color:#eee;
+    border-bottom: 1px solid #ccc;
+}
+
+.message-preview-timestamp {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 11px;
+    color: #aaa;
+}
+
+.message-preview-time {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 11px;
+    color: #aaa;
+
+}
+
+.message-preview-image {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 15px;
+    border: 1px solid #777;
+    left: 18px;
+}
+
+.message-preview-title {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    margin: 0px;
+}
+
+.message-preview-username {
+    position: absolute;
+    left: 93px;
+    top: 15px;
+    margin: 0px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 250px;
+    text-overflow: ellipsis;
+}
+
+/*right message side*/
+
+#message-send-text {
+    padding-left: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    height: 30px;
+    border-color: #ddd;
+    resize: none;
+    margin: 0px;
+}
+
+#message-send-text:focus {
+    outline: none;
+    border-color: 1px solid #2196F3;
+    box-shadow: 0 0 7px #2196F3;
+}
+
+#profile-messages-right {
+    border-left: 1px solid #eee;
+    background-color: #fff;
+    height: 500px;
+    border-top: 1px solid #eee;
+    position: relative;
+}
+
+#message-send-outer {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    height: 50px;
+    background-color: #eee;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.profile-message-tab .row {
+    margin: 0px;
+}
+
+#watch-list-placeholder {
+    text-align: center;
+    opacity: 0.6;
+}
+
+#watch-list-placeholder-image {
+    margin-top: 30px;
+    width: 150px;
+    opacity: 0.2;
+}
+
+#message-send-button {
+    background-color: #2196F3;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    width: 70%;
+    padding: 0px;
+}
+
+.message-bubble-other {
+    background-color: #eee;
+    border-radius: 10px;
+    max-width: 60%;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+    float: left;
+    clear: both;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.message-bubble-self {
+    background-color: #2196F3;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    color: #fff;
+    max-width: 60%;
+    display: inline-block;
+    float: right;
+    clear: both;
+    margin-bottom: 0px;
+    margin-top: 3px;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+#message-detail-content {
+    height: 450px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: scroll;
+}
+
+.messages-preview-unread i {
+    position: absolute;
+    left: 5px;
+    top: 46px;
+    background-color: #2196F3;
+    color: #2196F3;
+    font-size: 8px;
+    border-radius: 8px;
+}
+
+.message-preview-last {
+    position: absolute;
+    left: 95px;
+    top: 35px;
+    margin: 0px;
+    color: #555;
+    font-size: 13px;
+    word-break: break-all;
+    max-width: 240px;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#message-offer-popup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    margin-left: -10px;
+    z-index: 3;
+    text-align: center;
+}
+
+
+#messages-header {
+    position: relative;
+    display: flex;
+}
+
+#messages-offer-button {
+    position: absolute;
+    right: 20px;
+    top: 13px;
+}
+
+#message-offer-blurb {
+    font-size: 4em;
+    letter-spacing: -2px;
+    font-weight: 700;
+    color: #F4A49D;
+}
+
+#message-offer-value {
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#message-offer-button {
+    color: #fff;
+    width: 100px;
+}
+
+
+#profile-selling-holder {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+/*  */
+
+.selling-sold-button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 3;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.selling-sold-button:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.find-result {
+    position: relative;
+}
+
+.sold-item-layer {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.sold-item-layer img {
+    position: absolute;
+    z-index: 4;
+    width: 10;
+    top: 3px;
+    width: 70%;
+    margin-top: 20px;
+    margin-left: 10%;
+    opacity: 0.5;
+}
