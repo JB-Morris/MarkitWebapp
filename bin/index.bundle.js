@@ -64,14 +64,14 @@
 	    let uid;
 	    let navbarProfilePic;
 	    let profilePic;
-
+	    
 	    var getProfilePicture = __webpack_require__(2)["getProfilePicture"];
 	    var getUserInfo = __webpack_require__(2)["getUserInfoProper"];
-
+	 
 	    var updateNavbarName = function () {
 	        Promise.resolve(getUserInfo(uid)).then(userData => {
 	            profileName.text(userData.username);
-	        });
+	        });        
 	    };
 
 	    var updateNavbarPic = function () {
@@ -83,7 +83,7 @@
 	    auth.onAuthStateChanged(function(user) {
 	        if (user) {
 	            uid = auth.currentUser.uid;
-
+	            
 	            $("#navbar-placeholder").load("../navbar/navbar-logged-in.html", function () {
 	                navbarProfilePic = $('#navbar-user-photo');
 	                profileName = $('#profile-name');
@@ -125,7 +125,7 @@
 	                    edge: 'right', // Choose the horizontal origin
 	                    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
 	                    draggable: true // Choose whether you can drag to open on touch screens
-	                });
+	                });                
 	            });
 	        }
 	    });
@@ -193,7 +193,7 @@
 
 	            $('#navbar-user-photo').attr('src', downloadURL);
 	        });
-
+	        
 	    });
 	};
 
@@ -210,7 +210,7 @@
 	    firebase.auth().onAuthStateChanged(function(user) {
 	        if (user) {
 	            user.sendEmailVerification().then(function() {
-	            });
+	            });   
 	        }
 	    });
 	};
@@ -242,7 +242,7 @@
 	    hubs.forEach(function(currentHub) {
 	        database.ref('itemsByHub/' + currentHub + '/').child(itemKey).set(itemData);
 	    });
-
+	    
 	    // adding images to storage
 	    for (var i = 0; i < images.length; i += 1) {
 	        (function(x) {
@@ -380,11 +380,11 @@
 	        let item = snapshot.val()
 	        let itemTags = item['tags']
 	        for (let i = 0; i < itemTags.length; i += 1) {
-	            usersRef.child(auth.currentUser.uid +
+	            usersRef.child(auth.currentUser.uid + 
 	                '/tagSuggestions/' + itemTags[i]).set(0.5);
 	        }
 
-	    });
+	    });    
 	};
 
 	var filterListings = function (keywords, hubs, tags, price_range) {
@@ -405,7 +405,7 @@
 	var addFavoriteToProfile = function(uid, itemID) {
 	    usersRef.child(uid + '/favorites/' + itemID).set(true);
 	    itemsRef.child(itemID + '/favorites/').child(auth.currentUser.uid).set(true);
-
+	    
 	    //update suggested tags
 	    itemsRef.child(itemID).once('value').then(function(snapshot) {
 	        let item = snapshot.val()
@@ -414,7 +414,7 @@
 	            usersRef.child(uid + '/tagSuggestions/' + itemTags[i]).set(1);
 	        }
 
-	    });
+	    });    
 
 	};
 
@@ -435,7 +435,7 @@
 	};
 
 	var createAccount = function () {
-	    auth.createUserWithEmailAndPassword($("#sign-up-email").val(),
+	    auth.createUserWithEmailAndPassword($("#sign-up-email").val(), 
 	        $("#sign-up-password").val()).then(function(user) {
 	            var newUser = firebase.auth().currentUser;
 	            newUserDBEntry(newUser);
@@ -443,7 +443,7 @@
 	            var errorCode = error.code;
 	            var errorMessage = error.message;
 	            console.log(errorMessage);
-	    });
+	    });    
 	};
 
 	var newUserDBEntry = function (user) {
@@ -587,7 +587,7 @@
 	        // Wait for them all to complete
 	        Promise.all(promises).then(() => {
 	            previewMessages.sort(function(a, b){
-	                return new Date(b.timeStamp).getTime() - new Date(a.timeStamp).getTime()
+	                return new Date(b.timeStamp).getTime() - new Date(a.timeStamp).getTime() 
 	            });
 
 	            for (var i = 0; i < previewMessages.length; i += 1) {
@@ -659,8 +659,8 @@
 
 	    usersRef.child(`${uid}/chats/${chatID}/messages`).on('child_added', function(snapshot) {
 	        let message = snapshot.val();
-	        let userClass = (message.user === auth.currentUser.uid ?
-	            'message-bubble-self' :
+	        let userClass = (message.user === auth.currentUser.uid ? 
+	            'message-bubble-self' : 
 	            'message-bubble-other'
 	        );
 
@@ -668,7 +668,7 @@
 	            usersRef.child(`${uid}/chats/${chatID}/context/readMessages`).set(true);
 	            $('#message-detail-content').append($('<p></p>').addClass(userClass).text(message.text));
 	            $('#message-detail-content').fadeIn();
-
+	            
 	            // sroll to bottom of chat
 	            var wtf = $('#message-detail-content');
 	            var height = wtf[0].scrollHeight;
@@ -738,7 +738,7 @@
 
 	var populateSuggestionsInHub = function(hub, uid) {
 	    return Promise.all([
-	        getItemsInHub(hub),
+	        getItemsInHub(hub), 
 	        getUserSuggestions(uid), getUserFavorites()]).then(function (results) {
 	            let itemsInHub = results[0];
 	            let userSuggestions = results[1];
@@ -761,7 +761,7 @@
 	                            tagMatches[tag] = userSuggestions[tag];
 	                            tagMatchCount += 1;
 	                            tagWeight += userSuggestions[tag];
-
+	                            
 	                        }
 	                    });
 
@@ -1523,13 +1523,13 @@
 	                    Materialize.toast('tags can only contain letters and hyphens, up to 15 characters', 3000, 'rounded');
 	                    checksPassed = false;
 	                }
-	            }
+	            }   
 
 	            itemHub.forEach(function(currentHub) {
 	                if (!/^[a-zA-Z\-\s]+$/.test(currentHub)) {
 	                    Materialize.toast('Hubs can only contain letters, hyphens and spaces', 3000, 'rounded');
 	                    checksPassed = false;
-	                }
+	                } 
 	            });
 	        }
 
@@ -1540,12 +1540,12 @@
 	        var imageCount = ['one', 'two', 'three', 'four'];
 	        $('#carousel-wrapper').append($('<div></div>').addClass('carousel carousel-slider'));
 
-	        for (var i = 0; i < itemImages.length; i += 1) {
+	        for (var i = 0; i < itemImages.length; i += 1) {    
 	            $('.carousel-slider').append(
 	                $('<a></a>').addClass('carousel-item').attr('href', '#' + imageCount[i] + '!').append(
 	                    $('<img>').attr('src', itemImages[i])
 	                )
-	            );
+	            ); 
 	        }
 	        $('.carousel.carousel-slider').carousel({full_width: true, indicators: true});
 	    };
@@ -1553,7 +1553,7 @@
 	    $("#post-preview").click(function () {
 	        if (checkBasicItems()) {
 	            addImagesToSlider();
-
+	            
 	            $('#preview-submit-tab').removeClass('disabled');
 	            $('ul.tabs').tabs('select_tab', 'preview-submit');
 	            $('#basic-info-tab').addClass('disabled');
@@ -1561,7 +1561,7 @@
 	            $('#preview-title').append(itemTitle);
 	            $('#preview-price').append(itemPrice);
 	            $('#preview-description').append(itemDescription);
-
+	            
 	            for (tag of itemTags) {
 	                $('#preview-tags').append(
 	                    $('<a></a>').attr('href', '#').addClass('hub-card').text(tag)
@@ -1575,7 +1575,7 @@
 	        $('#basic-info-tab').removeClass('disabled');
 	        $('ul.tabs').tabs('select_tab', 'basic-info');
 	        $('#preview-submit-tab').addClass('disabled');
-
+	        
 	        $('#preview-title').empty();
 	        $('#preview-price').empty().text("$");
 	        $('#preview-description').empty();
@@ -1668,7 +1668,7 @@
 	            if (dataTransfer && dataTransfer.files.length) {
 	                e.preventDefault();
 	                e.stopPropagation();
-	                $.each(dataTransfer.files, function(i, file) {
+	                $.each(dataTransfer.files, function(i, file) { 
 	                    reader = new FileReader();
 	                    reader.onload = $.proxy(function(file, $fileList, event) {
 	                        var img = file.type.match('image.*') ? $("<img>").attr('src', event.target.result) : "";
@@ -1707,13 +1707,13 @@
 
 	    $('#submit-hub').on('click', function() {
 	        let hubs = $('#hub-selection').textext()[0].tags()._formData;
-
+	        
 	        if (hubs.length > 0 ) {
 	            $("#current-hubs-signed-in").empty();
 	            for (var i = 0; i < hubs.length; i += 1) {
 	                $('#current-hubs-signed-in').append(
 	                    $('<span>').addClass('hub-card z-depth-1').append(hubs[i])
-
+	                    
 	                );
 	                $("#current-hubs-signed-in").append(" ");
 	            }
@@ -1795,12 +1795,12 @@
 	                    getFavoriteObjects(showFavoritesInSidebar);
 	                }
 	                this.favorited = !this.favorited;
-	            });
+	            });            
 	        } else {
 	            $("#find-favorite-logged-in").css('display', 'none');
 	            $("#find-favorite-logged-out").css('display', 'block');
 	        }
-	    });
+	    });    
 
 	    var slider = $("#search-slider");
 	    if (slider.length > 0) {
@@ -1876,8 +1876,8 @@
 	            var str = $('#find-results-template').text();
 	            var compiled = _.template(str);
 	            var imagePaths = [];
-	            var filteredItemList = {};
-
+	            var filteredItemList = {};      
+	            
 	            for (var item in itemList) {
 	                var currentItem = itemList[item];
 	                var itemID = currentItem['id'];
@@ -1920,14 +1920,14 @@
 	                        $("#" + imagePaths[x]).attr({src: url});
 	                    });
 	                })(i);
-	            }
+	            }            
 	        });
 	    };
 
 
 	    $("#find-search-button").click(function () {
 	        let query = "key=";
-	        let keywords = $("#find-keywords").val().toLowerCase().trim().split(/\s+/);
+	        let keywords = $("#find-keywords").val().toLowerCase().trim().split(/\s+/);    
 	        let hubs = $("#find-hubs").val();
 	        let tags = $('#find-tags').textext()[0].tags()._formData;
 	        let priceRange = slider[0].noUiSlider.get();
@@ -1939,7 +1939,7 @@
 	        for (let i = 0; i < tags.length; i += 1) {
 	            tags[i] = tags[i].toLowerCase();
 	        }
-
+	        
 	        query += keywords === "" ? "none" : "" + keywords;
 	        location.hash = query;
 
@@ -1974,20 +1974,20 @@
 
 	        Promise.resolve(getItemsById([newMessageId]))
 	            .then(function(items) {
-
+	                
 	                for (let item in items) {
 	                    newMessageSellerId = items[item].uid;
 	                }
 
-	                return Promise.all([getUserInfoProper(newMessageSellerId),
-	                    getUserInfoProper(auth.currentUser.uid)]);
+	                return Promise.all([getUserInfoProper(newMessageSellerId), 
+	                    getUserInfoProper(auth.currentUser.uid)]); 
 	            })
 	            .then(function(results) {
 	                let currentUser = results[1];
 	                let otherUser = results[0]
 	                let myUsername = currentUser['username'];
 	                let otherUsername = otherUser['username'];
-	                initializeMessage(auth.currentUser.uid, newMessageSellerId,
+	                initializeMessage(auth.currentUser.uid, newMessageSellerId, 
 	                    newMessageId, newMessageImagePath, newMessageContent, otherUsername, myUsername);
 
 	                $('#message-popup-content').fadeOut(500);
@@ -2420,7 +2420,7 @@
 	            //     $('#username-unavailable').show();
 	            // }
 	        }
-	    });
+	    });    
 
 	    $('body').on('click', '#create-account-button', function() {
 	        if (checkInput()) {
@@ -2438,7 +2438,7 @@
 	            //     $('#password-unavailable').show();
 	            // }
 	        }
-	    });
+	    });    
 
 	    var checkHub = function () {
 	        return $('#sign-up-hub').val();
@@ -2495,7 +2495,7 @@
 	    });
 
 	    var emailCheck = new RegExp(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.edu$/);
-	    var passwordSizeLimit = 8;
+	    var passwordSizeLimit = 8; 
 
 	    $('body').on('keyup', '#sign-up-email', function() {
 	        if (emailCheck.test($('#sign-up-email').val())) {
@@ -2532,7 +2532,7 @@
 	    module.exports = {
 	        nameSizeMin,
 	        nameSizeMax
-	    }
+	    }    
 
 	});
 
@@ -2567,7 +2567,7 @@
 	    var getUserSelling = __webpack_require__(2)['getUserSelling'];
 	    var getItemsById = __webpack_require__(2)['getItemsById'];
 	    var setItemAsSold = __webpack_require__(2)['setItemAsSold'];
-
+	    
 	    var updateNavbarPic = __webpack_require__(1)['updateNavbarPic'];
 
 	    var reader;
@@ -2622,21 +2622,21 @@
 	        };
 	    }
 
-
+	    
 	    $('#messages-preview-holder').on('click', '.message-preview', function() {
 	        let chatid = $(this).attr('chatid');
 	        $('#message-send-button').attr('chatid', chatid)
 
 	        // toggling clicked/selected div colors
 	        if($(this).closest('div').hasClass('active')) {
-	            return false;
+	            return false;   
 	        }
 
 	        $(this).find('.material-icons').remove();
 	        $('.active-message').toggleClass('active-message');
 	        $(this).closest('div').toggleClass('active-message');
 	        $('#message-detail-content').empty().fadeOut(100);
-
+	        
 	        displayMessagesDetail(uid, chatid);
 	    });
 
@@ -2672,7 +2672,7 @@
 	                                $("#" + imagePaths[x]).attr({src: url});
 	                            });
 	                        })(i);
-	                    }
+	                    } 
 	                });
 
 	            } else {
@@ -2757,7 +2757,7 @@
 	        } else if (window.location.hash.substr(1) === 'settings') {
 	            $('ul.tabs').tabs('select_tab', 'profile-settings');
 	        }
-	    }
+	    } 
 
 	    auth.onAuthStateChanged(function(user) {
 	        if (user) {
@@ -2792,7 +2792,7 @@
 	        }
 	        else {
 	            $('#message-offer-popup').addClass('invisible-div').fadeOut(1000);
-	        }
+	        }        
 	    })
 
 	    addButton.click(function () {
@@ -2941,8 +2941,8 @@
 	            window.location.href = "../index.html";
 
 	        }
-	    });
-
+	    });    
+	    
 
 	});
 
