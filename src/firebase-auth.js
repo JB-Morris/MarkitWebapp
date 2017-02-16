@@ -19,11 +19,23 @@ $(function() {
         });
     }
 
+
+    var checkIfAtIndexPage = function() {
+        if (window.location.pathname === "/MarkitWebapp/index.html") {
+            return true
+        } else {
+            return false
+        }
+    }
     auth.onAuthStateChanged(function(user) {
+        var addPath = "../";
+        if (checkIfAtIndexPage) {
+            addPath = ""
+        }
         if (user) {
             uid = auth.currentUser.uid;
-            console.log(window.location.pathname);
-            $("#navbar-placeholder").load("./../navbar/navbar-logged-in.html", function () {
+
+            $("#navbar-placeholder").load(`./${addpath}navbar/navbar-logged-in.html`, function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
 
