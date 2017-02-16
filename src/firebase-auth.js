@@ -22,7 +22,7 @@ $(function() {
     auth.onAuthStateChanged(function(user) {
         if (user) {
             uid = auth.currentUser.uid;
-
+            console.log(window.location.pathname);
             $("#navbar-placeholder").load("./../navbar/navbar-logged-in.html", function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
