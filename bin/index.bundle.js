@@ -863,14 +863,14 @@ $(function() {
     let uid;
     let navbarProfilePic;
     let profilePic;
-    
+
     var getProfilePicture = __webpack_require__(0)["getProfilePicture"];
     var getUserInfo = __webpack_require__(0)["getUserInfoProper"];
- 
+
     var updateNavbarName = function () {
         Promise.resolve(getUserInfo(uid)).then(userData => {
             profileName.text(userData.username);
-        });        
+        });
     };
 
     var updateNavbarPic = function () {
@@ -882,8 +882,8 @@ $(function() {
     auth.onAuthStateChanged(function(user) {
         if (user) {
             uid = auth.currentUser.uid;
-            
-            $("#navbar-placeholder").load("../navbar/navbar-logged-in.html", function () {
+
+            $("#navbar-placeholder").load("/navbar/navbar-logged-in.html", function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
 
@@ -917,14 +917,14 @@ $(function() {
 
             });
         } else {
-            $("#navbar-placeholder").load("../navbar/navbar-signup.html", function () {
+            $("#navbar-placeholder").load("/navbar/navbar-signup.html", function () {
                 $(".dropdown-button").dropdown();
                 $(".button-collapse").sideNav({
                     menuWidth: 300, // Default is 240
                     edge: 'right', // Choose the horizontal origin
                     closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
                     draggable: true // Choose whether you can drag to open on touch screens
-                });                
+                });
             });
         }
     });
@@ -935,6 +935,7 @@ $(function() {
     }
 
 });
+
 
 /***/ }),
 /* 4 */
