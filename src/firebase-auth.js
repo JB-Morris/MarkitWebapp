@@ -23,7 +23,7 @@ $(function() {
         if (user) {
             uid = auth.currentUser.uid;
 
-            $("#navbar-placeholder").load("./../navbar/navbar-logged-in.html", function () {
+            $("#navbar-placeholder").load("/navbar/navbar-logged-in.html", function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
 
@@ -57,7 +57,7 @@ $(function() {
 
             });
         } else {
-            $("#navbar-placeholder").load("./../navbar/navbar-signup.html", function () {
+            $("#navbar-placeholder").load("/navbar/navbar-signup.html", function () {
                 $(".dropdown-button").dropdown();
                 $(".button-collapse").sideNav({
                     menuWidth: 300, // Default is 240
