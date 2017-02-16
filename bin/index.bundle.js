@@ -118,7 +118,7 @@
 
 	            });
 	        } else {
-	            $("#navbar-placeholder").load("../navbar/navbar-signup.html", function () {
+	            $("#navbar-placeholder").load(".../navbar/navbar-signup.html", function () {
 	                $(".dropdown-button").dropdown();
 	                $(".button-collapse").sideNav({
 	                    menuWidth: 300, // Default is 240
