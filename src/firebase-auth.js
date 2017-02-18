@@ -1,3 +1,5 @@
+"use strict"
+
 $(function() {
     var auth = require('./firebase.js')["auth"];
     let uid;

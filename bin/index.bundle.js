@@ -858,6 +858,9 @@ module.exports = g;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 $(function() {
     var auth = __webpack_require__(0)["auth"];
     let uid;
@@ -888,9 +891,9 @@ $(function() {
         }
     }
     auth.onAuthStateChanged(function(user) {
-        var addPath = "../";
+        let addPath = "../";
         if (checkIfAtIndexPage) {
-            addPath = ""
+            addPath = "";
         }
         if (user) {
             uid = auth.currentUser.uid;
