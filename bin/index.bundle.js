@@ -898,7 +898,7 @@ $(function() {
         if (user) {
             uid = auth.currentUser.uid;
 
-            $("#navbar-placeholder").load(`./${addpath}navbar/navbar-logged-in.html`, function () {
+            $("#navbar-placeholder").load(`./${addPath}navbar/navbar-logged-in.html`, function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
 
