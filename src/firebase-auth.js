@@ -5,6 +5,7 @@ $(function() {
     let uid;
     let navbarProfilePic;
     let profilePic;
+    let profileName;
 
     var getProfilePicture = require('./firebase.js')["getProfilePicture"];
     var getUserInfo = require('./firebase.js')["getUserInfoProper"];

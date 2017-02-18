@@ -866,6 +866,7 @@ $(function() {
     let uid;
     let navbarProfilePic;
     let profilePic;
+    let profileName;
 
     var getProfilePicture = __webpack_require__(0)["getProfilePicture"];
     var getUserInfo = __webpack_require__(0)["getUserInfoProper"];
