@@ -28,9 +28,9 @@ $(function() {
         }
     }
     auth.onAuthStateChanged(function(user) {
-        var addPath = "../";
+        let addPath = "../";
         if (checkIfAtIndexPage) {
-            addPath = ""
+            addPath = "";
         }
         if (user) {
             uid = auth.currentUser.uid;
