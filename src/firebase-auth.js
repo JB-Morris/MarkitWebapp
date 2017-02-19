@@ -35,7 +35,7 @@ $(function() {
     auth.onAuthStateChanged(function(user) {
         // TODO add the next couple of lines to the checkIfAtIndexPage function
         let addPath = "../";
-        if (checkIfAtIndexPage) {
+        if (checkIfAtIndexPage()) {
             addPath = "";
         }
         if (user) {
