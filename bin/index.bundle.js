@@ -883,7 +883,6 @@ $(function() {
         });
     }
 
-
     var checkIfAtIndexPage = function() {
         if (window.location.pathname === "/MarkitWebapp/index.html") {
             return true
@@ -891,7 +890,9 @@ $(function() {
             return false
         }
     }
+
     auth.onAuthStateChanged(function(user) {
+        // TODO add the next couple of lines to the checkIfAtIndexPage function
         let addPath = "../";
         if (checkIfAtIndexPage) {
             addPath = "";
@@ -933,7 +934,7 @@ $(function() {
 
             });
         } else {
-            $("#navbar-placeholder").load("./../navbar/navbar-signup.html", function () {
+            $("#navbar-placeholder").load(`./${addPath}navbar/navbar-signup.html`, function () {
                 $(".dropdown-button").dropdown();
                 $(".button-collapse").sideNav({
                     menuWidth: 300, // Default is 240
