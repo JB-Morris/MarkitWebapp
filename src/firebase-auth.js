@@ -23,6 +23,7 @@ $(function() {
     }
 
     var checkIfAtIndexPage = function() {
+        console.log(window.location.pathname);
         if (window.location.pathname === "/MarkitWebapp/index.html") {
             console.log('at index');
             return true
