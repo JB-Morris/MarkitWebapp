@@ -9,7 +9,8 @@ module.exports = {
             './src/detailed-view.js',
             './src/profile.js',
             './src/hub.js',
-            './src/firebase.js'          
+            './src/firebase.js',
+            './src/custom.js'        
         ]
      },
      output: {

@@ -161,6 +161,6 @@ $(function() {
     module.exports = {
         nameSizeMin,
         nameSizeMax
-    }    
+    }
 
 });

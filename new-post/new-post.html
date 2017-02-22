@@ -120,6 +120,24 @@
           <a class="waves-effect waves-light btn-large white z-depth-0" id="cancel-hub">Cancel</a>
         </div>
       </div>
+      <!-- user not verified popup -->
+      <div id="notVerified-popup">
+        <div id="notVerified-popup-inner">
+          <div class="close-button grey-text right-align"><i class="small material-icons">close</i></div>
+          <div id="notVerified-popup-content">
+            <h2 class="red-text text-lighten-2 ">
+              Account Not Verified
+            </h2>
+            <p class="grey-text">Please verify your account by clicking the link in the email that was sent.</p>
+            <p class="grey-text">You can also request a new email to be resent</p>
+            <a id="notVerified-popup-send-button" class="waves-effect waves-light center-align btn-large blue lighten-2">Resend Email</a>
+          </div>
+          <div id="notVerified-confirmation">
+            <h1 id='notVerified-confirmation-text'>Verification Email Sent</h1>
+            <i class="material-icons large green-text " id="notVerified-checkmark">check_circle</i>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>

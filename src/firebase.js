@@ -66,8 +66,7 @@ var getProfilePicture = function (uid) {
 var sendVerificationEmail = function () {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            user.sendEmailVerification().then(function() {
-            });   
+            user.sendEmailVerification();
         }
     });
 };

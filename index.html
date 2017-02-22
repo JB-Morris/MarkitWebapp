@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>MarkIt</title>
+    <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link href="../tag-plugin/textext.core.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.tags.css" rel="stylesheet">
+    <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./navbar/navbar.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
-    
     <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
   </head>
 
@@ -35,7 +38,46 @@
     </header>
     <main>
       <div class="parallax-container">
-        <div class="parallax"><img class="responsive-img" src="media/BlondeWorkingHardWithHands.jpg"></div>
+        <div class="parallax blur-me" id="parallax-first-container">
+          <img class="responsive-img" src="media/HardBoneInTheOpen.jpg">
+        </div>
+        <div class="main-info-container">
+          <div class="main-info-left">
+              <h3 class="bold-caption"> Students Only</h3>
+              <p class="caption-text-below">Never deal with strangers or scam artists again. Buy and sell only with students and alumni that have a verified .edu email</p>
+          </div>
+          <div class="main-info-right">
+              <h3 class="bold-caption">Quick Search</h3>
+              <p class="caption-text-below">Enter a search once, and only once (e.g. ISBN for a book). we'll notify you when the item is available at the locations and price that you want.</p>
+          </div>
+        </div> 
+        <div class="search-container z-depth-4">
+          <div class="row">
+            <div class="col s12 m12 l3">
+              <label for="main-keys">Title</label>
+              <input type="text" id="main-keys" placeholder="ISBN, iPhone, etc">
+            </div>
+            <div class="col s12 m12 l3">
+              <label for="main-campus">Campus</label>
+              <input type="text" id="main-campus">
+            </div>
+            <div class="col s12 m12 l2">
+              <label for="main-price">Max Price</label>
+              <input type="text" id="main-price" placeholder="$ 65">
+            </div>
+            <div class="col s12 m12 l2">
+              <label for="main-tags">Tags</label>
+              <textarea id="main-tags" placeholder="Books, Electronics"></textarea>
+            </div>                           
+            <div class="col s12 m12 l2">
+              <a class="waves-effect waves-light btn-large" id="search-button-main-page"><i class="medium material-icons">search</i></a>
+            </div>
+          </div>
+          <p id="optional-blurb">(All fields are optional)</p>
+          
+
+
+        </div>        
       </div>
       <div class="section white">
         <div class="row container">
@@ -126,7 +168,9 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="../tag-plugin/textext.core.js"></script>
+    <script src="../tag-plugin/textext.plugin.tags.js"></script>
+    <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>
     <script type="text/javascript" src="bin/index.bundle.js"></script>
-    <script type="text/javascript" src="src/custom.js"></script>
   </body>
 </html>

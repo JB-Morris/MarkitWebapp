@@ -27,3 +27,8 @@
   line-height: 13px;
   height: auto;
 }
+
+.text-core .text-wrap textarea:focus {
+  box-shadow: 0 0 5px rgba(0, 100, 255, 1);
+  border: 1px solid rgba(0, 100, 255, 1);
+}

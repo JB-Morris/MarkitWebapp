@@ -1,4 +1,5 @@
 'use strict'
+
 $(function() {
     var getListings = require('./firebase.js')['getListings'];
     var getFavorites = require('./firebase.js')['getFavorites'];
@@ -68,10 +69,110 @@ $(function() {
             $("#find-favorite-logged-in").css('display', 'none');
             $("#find-favorite-logged-out").css('display', 'block');
         }
-    });    
+    });
+
+    var newSearch = function(currentItems, keywords = [], tags = [], hubs = [], priceRange = []) {
+        Promise.resolve(currentItems).then(function(itemList) {
+
+            console.log(hubs);
+            console.log(keywords);
+            console.log(tags);
+            console.log(priceRange);
+            var str = $('#find-results-template').text();
+            var compiled = _.template(str);
+            var imagePaths = [];
+            var filteredItemList = {};      
+            
+            for (var item in itemList) {
+                var currentItem = itemList[item];
+                var itemID = currentItem['id'];
+                var itemDescription = currentItem['description'].toLowerCase();
+                var itemTitle = currentItem['title'].toLowerCase();
+                var itemPrice = parseInt(currentItem['price'])
+                imagePaths.push(itemID);
+
+
+                if (hubs.length > 0 && !hubs.some(hub => currentItem['hubs'].includes(hub))) {
+                    continue;
+                }
+
+                if (tags.length > 0 && !tags.some(tag => currentItem['tags'].includes(tag))) {
+                    continue;
+                }
+
+                if (keywords.length > 0 && (!keywords.some(key => itemTitle.includes(key)) &&
+                    !keywords.some(key => itemDescription.includes(key)))) {
+                        continue
+                }
+
+                if (itemPrice < priceRange[0] || itemPrice > priceRange[1]) {
+                    continue;
+                }
+
+                filteredItemList[itemID] = currentItem
+            }
+
+            $("#find-content-presearch").hide()
+            $('#find-results-holder').empty();
+            $('#find-results-holder').append(compiled({filteredItemList: filteredItemList}));
+
+
+            getFavorites(showFavoritesInSearches);
+
+            for (var i = 0; i < imagePaths.length; i += 1) {
+                (function (x) {
+                    getImage(imagePaths[x] + '/imageOne', function(url) {
+                        $("#" + imagePaths[x]).attr({src: url});
+                    });
+                })(i);
+            }            
+        });
+    };
+
+    function updateSliderRange (min, max) {
+        slider[0].noUiSlider.updateOptions({
+            start: [min, max]
+        });
+    }
+
+    var showItemsBasedOnHash = function() {
+        if (location.hash.length > 0) {
+            let hashKeys = location.hash.split('?');
+            let key = hashKeys[0].split("=")[1];
+            let hubs = hashKeys[1].split("=")[1];
+            let tags = hashKeys[2].split("=")[1];
+
+            if (tags.length === 0) {
+                tags = [];
+            } else {
+                tags = tags.split(',');
+            }
+
+            if (key.length === 0) {
+                key = [];
+            } else {
+                key = key.split(',');
+            }
+
+            if (hubs.length === 0) {
+                hubs = [];
+            } else {
+                hubs = hubs.split(',');
+            }
+
+            let priceRange = [parseInt(hashKeys[3].split("=")[1]), parseInt(hashKeys[4].split("=")[1])];
+            updateSliderRange(priceRange[0], priceRange[1]);
+
+            $("#find-keywords").val(key.join(" "));
+            $('#find-tags').textext()[0].tags().addTags(tags);
+
+            
+            newSearch(getListings(), key, tags, hubs, priceRange);
+        }
+    }    
 
     var slider = $("#search-slider");
-    if (slider.length > 0) {
+    if (window.location.pathname === "/find/find.html") {
         // Add dropdown hub selector
         $('select').material_select();
         // add slider
@@ -124,6 +225,8 @@ $(function() {
                     result : textext.itemManager().filter(list, query) }
                 );
         });
+
+        showItemsBasedOnHash();
     }
 
     var showFavoritesInSearches = function(currentFavorites) {
@@ -138,60 +241,6 @@ $(function() {
 
         });
     };
-
-    var newSearch = function(currentItems, keywords = [], tags = [], hubs = [], priceRange = []) {
-        Promise.resolve(currentItems).then(function(itemList) {
-            var str = $('#find-results-template').text();
-            var compiled = _.template(str);
-            var imagePaths = [];
-            var filteredItemList = {};      
-            
-            for (var item in itemList) {
-                var currentItem = itemList[item];
-                var itemID = currentItem['id'];
-                var itemDescription = currentItem['description'].toLowerCase();
-                var itemTitle = currentItem['title'].toLowerCase();
-                var itemPrice = parseInt(currentItem['price'])
-                imagePaths.push(itemID);
-
-
-                if (hubs.length > 0 && !hubs.some(hub => currentItem['hubs'].includes(hub))) {
-                    continue;
-                }
-
-                if (tags.length > 0 && !tags.some(tag => currentItem['tags'].includes(tag))) {
-                    continue;
-                }
-
-                if (keywords.length > 0 && (!keywords.some(key => itemTitle.includes(key)) &&
-                    !keywords.some(key => itemDescription.includes(key)))) {
-                        continue
-                }
-
-                if (itemPrice < priceRange[0] || itemPrice > priceRange[1]) {
-                    continue;
-                }
-
-                filteredItemList[itemID] = currentItem
-            }
-
-            $("#find-content-presearch").hide()
-            $('#find-results-holder').empty();
-            $('#find-results-holder').append(compiled({filteredItemList: filteredItemList}));
-
-
-            getFavorites(showFavoritesInSearches);
-
-            for (var i = 0; i < imagePaths.length; i += 1) {
-                (function (x) {
-                    getImage(imagePaths[x] + '/imageOne', function(url) {
-                        $("#" + imagePaths[x]).attr({src: url});
-                    });
-                })(i);
-            }            
-        });
-    };
-
 
     $("#find-search-button").click(function () {
         let query = "key=";
@@ -208,7 +257,7 @@ $(function() {
             tags[i] = tags[i].toLowerCase();
         }
         
-        query += keywords === "" ? "none" : "" + keywords;
+        query += `${keywords}?hub=${hubs}?tags=${tags}?priceMin=${priceRange[0]}?priceMax=${priceRange[1]}`;
         location.hash = query;
 
         newSearch(getListings(), keywords, tags, hubs, priceRange);

@@ -18,11 +18,11 @@ nav .brand-logo {
 }
 
 nav ul a {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 nav ul a:hover {
-    color: #fff;
+    color: #F4A49D;
     background-color: rgba(0, 0, 0, 0.0);
 }
 
@@ -34,13 +34,6 @@ nav ul a:hover {
 .navbar-buttons > li:last-child {
     min-width: 130px;
     text-align: center;
-}
-
-nav ul li {
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-}
-nav ul li:hover {
-    background-color: #F4A49D;
 }
 
 #navbar-user-photo {
@@ -65,7 +58,7 @@ i.right {
 }
 
 #navbar-searchbar:hover {
-    background-color: #ddd;
+    background-color: #eee;
 }
 
 input#search {
@@ -77,6 +70,10 @@ input#search {
 nav .input-field {
     height: 64px;
     line-height: 64px;
+}
+
+.active-navbar-li {
+    color: #F4A49D;
 }
 
 /*show the stupid navbar search*/
@@ -99,7 +96,7 @@ nav .input-field label i {
 }
 
 .dropdown-content li:hover {
-    background-color: #546A76;
+    background-color: #fff;
 }
 
 

@@ -1,5 +1,4 @@
 $(function () {
-    $('.parallax').parallax();
     var getRecentItemsInHub = require('./firebase.js')['getRecentItemsInHub'];
     var itemImagesRef = require('./firebase.js')["itemImagesRef"];
     var auth = require('./firebase.js')["auth"];

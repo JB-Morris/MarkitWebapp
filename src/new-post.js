@@ -1,6 +1,9 @@
+"use strict"
+
 $(function() {
     var addListing = require('./firebase.js')['addListing'];
     var auth = require('./firebase.js')['auth'];
+    var sendVerificationEmail = require('./firebase.js')['sendVerificationEmail'];
     var itemTitle;
     var itemDescription;
     var itemTags;
@@ -8,6 +11,8 @@ $(function() {
     var itemHub;
     var userID;
     var itemImages;
+
+    $('#notVerified-confirmation').hide();
 
     var checkBasicItems = function() {
         var checksPassed = true;
@@ -120,8 +125,16 @@ $(function() {
         }
     });
 
-    var itemTagRef = $('#itemTags');
-    if (itemTagRef.length > 0) {
+
+    $('.close-button').click(function () {
+        $('#notVerified-popup').animate({
+            opacity: 0,
+            'z-index': -100
+        }, 100);
+    });
+
+    let initializeTagTextExt = (element) => {
+        var itemTagRef = $(element);
         itemTagRef.textext({plugins : 'tags autocomplete'})
             .bind('getSuggestions', function(e, data){
                 var list = [
@@ -149,11 +162,23 @@ $(function() {
                 $(this).trigger('setSuggestions',{
                     result : textext.itemManager().filter(list, query) }
                 );
+        });        
+    }
+
+    let checkIfVerified = () => {
+        auth.onAuthStateChanged(function(user) {
+            if (!auth.currentUser.emailVerified) {
+                $('#notVerified-popup').css('z-index', '100').animate({
+                    opacity: 1
+                }, 50);
+
+                $("#post-preview").addClass('disabled');
+            }
         });
     }
 
-    var hubRef = $('#hub-selection');
-    if (hubRef.length > 0) {
+    let initializeCampusTextExt = () => {
+        var hubRef = $('#hub-selection');
         hubRef.textext({plugins : 'tags autocomplete'})
             .bind('getSuggestions', function(e, data){
                 var list = [
@@ -167,6 +192,28 @@ $(function() {
                     result : textext.itemManager().filter(list, query) }
                 );
         });
+
+    }
+
+    $("#notVerified-popup-send-button").click(() => {
+        console.log('button clicked');
+        $('#notVerified-popup-content').fadeOut(500);
+
+        setTimeout(function () {
+            $('#notVerified-popup-inner').css({
+                'display': 'flex',
+                'align-items': 'center',
+                'justify-content': 'center'
+            });
+            $('#notVerified-confirmation').fadeIn();
+        }, 500);
+        sendVerificationEmail();
+    });
+
+    if (window.location.pathname === "/new-post/new-post.html") {
+        checkIfVerified();
+        initializeCampusTextExt();
+        initializeTagTextExt('#itemTags');
     }
 
 
@@ -249,4 +296,9 @@ $(function() {
     $('#cancel-hub').on('click', function() {
         $('#hub-popup').fadeOut();
     });
+
+    module.exports = {
+        initializeTagTextExt
+    }
 });
+
