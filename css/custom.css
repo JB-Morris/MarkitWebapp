@@ -1,5 +1,5 @@
 html, body {
-    font-family: "Oxygen", sans-serif;
+    font-family: "Roboto", sans-serif;
     /*footer stuff*/
     display: flex;
     height: 100%;
@@ -10,22 +10,33 @@ main {
     /*flex: 1 0 auto;*/
 }
 
+/* helper for horizontal/vertical align */
+
+.hori-vert-align {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /*Fonts*/
 
 .bold-caption {
-    font-size: 80px;
+    font-size: 40px;
     font-weight: 900;
-    color: #fff;
+    color: #555;
 }
 
 .caption-text-below {
     font-size: 17px;
-    color: #fff;
+    color: #555;
 }
 
 /*fading blurbs */
 
 .main-info-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     height: 200px;
     margin: 100px 10% 100px 10%;
 }
@@ -49,12 +60,30 @@ main {
 /*search box*/
 
 .search-container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.5);
     margin-left: 10%;
     margin-right: 10%;
     padding: 40px 40px 40px 40px;
+    border-radius: 10px;
+    position: relative;
+    bottom: 250px;
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
 }
 
+.search-container:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.search-container input {
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+}
+
+.search-container input:hover {
+    background-color: rgba(255, 255, 255, 1.0);
+}
 .search-container .row {
     margin-bottom: 0px;
 }
@@ -75,11 +104,18 @@ main {
 input[type=text] {
     border: 1px solid rgba(0, 0, 0, 0.3);
     padding-left: 10px;
-    background-color: #fff;
 }
 
 label {
     color: rgba(0, 0, 0, 0.7);
+}
+
+.text-core {
+    height: 47px;
+}
+
+.text-wrap {
+    height: 47px;
 }
 
 input[type=text]:focus:not([readonly]) {
@@ -130,6 +166,97 @@ input[type=text]:focus:not([readonly]) {
 
 /*footer*/
 
-footer.page-footer {
+footer .page-footer {
     margin-top: 0px;
+}
+
+
+/* select campus to search*/
+#splash-pick-campus {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-color: #282828;
+}
+
+.splash-big-blurb {
+    font-family: Raleway, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #555;
+    padding: 0px;
+    text-align: center;
+    margin-top: -50px;
+}
+
+#splash-pick-campus h1 {
+    font-family: Raleway, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #eee;
+    padding: 0px;
+    text-align: center;
+}
+
+#splash-pick-campus h6 {
+    color: #ccc;
+    margin: 0px 0px 60px 0px;
+}
+
+#campus-list {
+    margin: 0px 200px 60px 200px;
+}
+
+.campus-button {
+    height: 150px;
+    width: 350px;
+    margin: 20px 10px 0px 0px;
+    color: #eee;
+    border: 3px solid #eee;
+    border-radius: 8px;
+    font-size: 20px;
+    letter-spacing: 5px;
+    cursor: pointer;
+    background-size: 200% 200%;
+    background-image: 
+    linear-gradient(to top, #A72424 50%, transparent 50%);
+    -webkit-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -moz-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -ms-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -o-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+}
+
+.campus-button:hover {
+    border-color: #A72424;
+    background-image: 
+    linear-gradient(to top, #A72424 51%, transparent 50%);
+    background-position: 0 100%;
+    -webkit-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -moz-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -ms-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    -o-transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+    transition: background-position 500ms, color 500ms ease, border-color 500ms ease;
+}
+
+.campus-button-coming-soon {
+    background-image: linear-gradient(to top, #555 50%, transparent 50%);
+}
+
+.campus-button-coming-soon:hover {
+    border-color: #555;
+    background-image: linear-gradient(to top, #555 51%, transparent 50%);
+    cursor: not-allowed;
+}
+
+
+.short-line-break {
+    width: 200px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+#big-header-image {
+
 }

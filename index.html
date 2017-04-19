@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MarkIt</title>
+    <title>Vendyr</title>
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -10,9 +10,9 @@
     <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./navbar/navbar.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./sidescroller-view/sidescroller-view.css"  media="screen,projection"/>
     <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
   </head>
-
   <body>
     <!-- facebook auth stuff -->
     <script>
@@ -32,15 +32,12 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-
     <header>
       <div id="navbar-placeholder"> </div>
     </header>
     <main>
-      <div class="parallax-container">
-        <div class="parallax blur-me" id="parallax-first-container">
-          <img class="responsive-img" src="media/HardBoneInTheOpen.jpg">
-        </div>
+      <div class="big-header-image">
+        <img class="responsive-img" src="media/testBackground.png">
         <div class="main-info-container">
           <div class="main-info-left">
               <h3 class="bold-caption"> Students Only</h3>
@@ -50,7 +47,7 @@
               <h3 class="bold-caption">Quick Search</h3>
               <p class="caption-text-below">Enter a search once, and only once (e.g. ISBN for a book). we'll notify you when the item is available at the locations and price that you want.</p>
           </div>
-        </div> 
+        </div>
         <div class="search-container z-depth-4">
           <div class="row">
             <div class="col s12 m12 l3">
@@ -59,7 +56,7 @@
             </div>
             <div class="col s12 m12 l3">
               <label for="main-campus">Campus</label>
-              <input type="text" id="main-campus">
+              <textarea id="main-campus" placeholder="Loyola Marymount University"></textarea>
             </div>
             <div class="col s12 m12 l2">
               <label for="main-price">Max Price</label>
@@ -68,109 +65,47 @@
             <div class="col s12 m12 l2">
               <label for="main-tags">Tags</label>
               <textarea id="main-tags" placeholder="Books, Electronics"></textarea>
-            </div>                           
+            </div>
             <div class="col s12 m12 l2">
               <a class="waves-effect waves-light btn-large" id="search-button-main-page"><i class="medium material-icons">search</i></a>
             </div>
           </div>
           <p id="optional-blurb">(All fields are optional)</p>
-          
-
-
-        </div>        
+        </div>
       </div>
       <div class="section white">
-        <div class="row container">
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">loyalty</i></h4>
-              <h5 class="center">Choose Your Tags</h5>
-              <p class="center light">Simply let <span class="red-text text-lighten-2">MarkIt</span> know what items interest you.</p>
-              <div class="divider"></div>
-              <p class="center light">Say you're looking for <span class="red-text text-lighten-2">couches</span> that are <span class="red-text text-lighten-2">under 500$</span> made of <span class="red-text text-lighten-2">leather</span>.</p>
-            </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">directions_walk</i></h4>
-              <h5 class="center">Live Freely</h5>
-              <p class="center light">Let <span class="red-text text-lighten-2">MarkIt</span> keep an eye out for what you want to buy.</p>
-              <div class="divider"></div>
-              <p class="center light">Don't waste your time checking if someone is selling your perfect couch.</p>
-            </div>
-          </div>
-
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">announcement</i></h4>
-              <h5 class="center">Get Notified</h5>
-              <p class="center light"><span class="red-text text-lighten-2">MarkIt</span> will let you know when your item is available.</p>
-              <div class="divider"></div>
-              <p class="center light">Get that one couch that's just right for you.</p>
-            </div>
-          </div>
-          <div class="tagging-system-image"></div>
+        <h1 class="splash-big-blurb">Shop by Most Recent</h1>
+        <hr class="short-line-break">
+        <div class="scroll-blurb">
+          <p> Newest Items around Loyola Marymount University</p>
+        </div>
+        <div id="lmu-scroller-placeholder"> </div>
+        <!-- UCLA -->
+        <div class="scroll-blurb">
+          <p> Newest Items around UCLA</p>
+        </div>
+        <div id="ucla-scroller-placeholder"></div>
+      <div class="center" id="splash-pick-campus">
+        <h1>Shop by Campus</h1>
+        <hr class="short-line-break">
+        <h6> View all items available at a specific campus</h6>
+        <div id="campus-list">
+          <div class="campus-button hori-vert-align z-depth-4 hoverable">UCLA</div>
+          <div class="campus-button hori-vert-align z-depth-4 hoverable">LMU</div>
+          <div class="campus-button campus-button-coming-soon hori-vert-align z-depth-4 hoverable">USC</div>
+          <div class="campus-button campus-button-coming-soon hori-vert-align z-depth-4 hoverable">UCB</div>
+          <div class="campus-button campus-button-coming-soon hori-vert-align z-depth-4 hoverable">NYU</div>
+          <div class="campus-button campus-button-coming-soon hori-vert-align z-depth-4 hoverable">MIT</div>
         </div>
       </div>
-      <div class="parallax-container">
-        <div class="parallax"><img class="responsive-img" src="media/HardBoneInTheOpen.jpg" width=></div>
-        </div> 
-        <div class="section white">
-          <div class="row container">
-            <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">security</i></h4>
-              <h5 class="center">Shop Safely</h5>
-
-              <p class="center light"><span class="red-text text-lighten-2">MarkIt</span> only allows students to sign up for accounts, keeping the bad guys at bay. Every user has reviews from buyers and sellers that they've interacted with.</p>
-            </div>
-          </div>
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">group</i></h4>
-              <h5 class="center">Community Driven</h5>
-
-              <p class="center light">Buy and sell with other <span class="red-text text-lighten-2">MarkIt</span> users in your campus ecosystem. Each college has a hub, showing trending items and recommendations.</p>
-            </div>
-          </div>
-
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <h4 class="center red-text text-lighten-2"><i class="medium material-icons">public</i></h4>
-              <h5 class="center">Broaden Your Horizons</h5>
-
-              <p class="center light">Look around other <span class="red-text text-lighten-2">MarkIt</span> communities to find that gem that's just right for you.</p>
-            </div>
-          </div>
-          <div class="tagging-system-image"></div>
-        </div>
-      </div>
-      <div class="parallax-container">
-        <div class="parallax"><img class="responsive-img" src="media/ManMenacinglyGlares.jpg" width=></div>
-      </div> 
     </main>
-
-    <footer class="page-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <!-- <p class="grey-text text-lighten-4">+1 (800) 244 3425</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        2016 MarkIt
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-      </div>
-    </footer>
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="../tag-plugin/textext.core.js"></script>
     <script src="../tag-plugin/textext.plugin.tags.js"></script>
     <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
     <script type="text/javascript" src="bin/index.bundle.js"></script>
+    
   </body>
 </html>

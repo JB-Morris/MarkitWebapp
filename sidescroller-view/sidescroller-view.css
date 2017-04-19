@@ -1,0 +1,130 @@
+/* card view*/
+.card .card-title {
+    font-size: 16px;
+}
+
+.card .card-image {
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card {
+    margin: 20px 10px 20px 10px;
+    position: relative;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.card-contact {
+    position:absolute;
+    bottom: 30px;
+    width: 88%
+}
+
+.card-view-hub {
+    float: right;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.find-result-price {
+    color: #AED581;
+}
+
+.find-result-favorite {
+    position: absolute;
+    top: 1%;
+    right: -3%;
+    z-index: 3;
+}
+
+.find-result-favorite-image {
+    width: 75%;
+    height: auto;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+
+/*Scroll container*/
+
+.scroll-object {
+    height: 400px;
+    display: flex;
+}
+
+.outside-scroll-container {
+    width: 80%;
+    overflow: scroll;
+}
+
+.inside-scroll-container {
+    width: 6000px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    padding-left: 0px;
+}
+
+.left-scroll-arrow-container {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.right-scroll-arrow-container {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    margin-left: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.left-scroll-arrow-container:hover i, .right-scroll-arrow-container:hover i {
+    color: #F4A49D;
+    font-size: 30px !important;
+}
+
+.scroll-blurb p {
+    margin: 30px 0px 0px 10%;
+    padding-left: 10px;
+    font-size: 19px;
+}
+
+.see-more-card {
+    height: 310px;
+    width: 400px;
+    background-color: #039BE5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.3;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 1px 1px rgba(0,0,0,0.23);
+    border-radius: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.see-more-card p {
+    font-size: 19px;
+    color: #fff;
+}
+
+.section {
+    padding: 0px;
+}

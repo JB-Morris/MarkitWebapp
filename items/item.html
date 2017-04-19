@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vendyr</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css">
+    <link type="text/css" rel="stylesheet" href="./item.css"  media="screen,projection"/>
+  </head>
+
+  <body id="find-body">
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row" id="detailed-item-card">
+          <div class="col s12 ml12 l12">
+            <div class="carousel carousel-slider center" data-indicators="true">
+              <p id="item-price">$</p>
+              <div class="carousel-item red white-text" href="#one!">
+                <img id="image-1" src="" />
+              </div>
+              <div class="carousel-item amber white-text" href="#two!">
+                <img id="image-2" src="../find/iphone-sample.jpg" />
+              </div>
+              <div class="carousel-item green white-text" href="#three!">
+                <img id="image-3" src="../find/iphone-sample.jpg" />
+              </div>
+              <div class="carousel-item blue white-text" href="#four!">
+                <img id="image-4" src="../find/iphone-sample.jpg" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="item-seller-info">
+          <div class="col s12 m12 l9" id="item-info">
+            <h4 id="item-title">Title</h4>
+            <p id="item-description">Description</p>
+            <p id="item-tags">Tags:</p>
+          </div>
+          <div class="col s12 m12 l3" id="seller-info">
+            <div class="chip">
+              <img id="seller-profile-picture" src="../media/ic_profile.png" alt="Contact Person">
+              <span id="seller-username">Seller</span>
+            </div>
+            <div class="user-stars">
+              <i id="star-1" class="material-icons star-1">star_border</i>
+              <i id="star-2" class="material-icons star-2">star_border</i>
+              <i id="star-3" class="material-icons star-3">star_border</i>
+              <i id="star-4" class="material-icons star-4">star_border</i>
+              <i id="star-5" class="material-icons star-5 tooltipped" data-position="bottom" data-delay="50" data-tooltip="">star_border</i>
+            </div>
+            <br>
+            <a id="send-message-button" class="waves-effect waves-light btn-large blue">Send Message</a>
+            <br>
+            <br>
+            <a id="send-offer-button" class="waves-effect waves-light btn-large green">Send Offer</a>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+  </body>
+</html>

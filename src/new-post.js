@@ -133,29 +133,11 @@ $(function() {
         }, 100);
     });
 
-    let initializeTagTextExt = (element) => {
+    let initializeTagTextExt = (element, tags) => {
         var itemTagRef = $(element);
         itemTagRef.textext({plugins : 'tags autocomplete'})
             .bind('getSuggestions', function(e, data){
-                var list = [
-                        'Table',
-                        'Desk',
-                        'Computer',
-                        'Electronics',
-                        'iPhone',
-                        'Cell-Phone',
-                        'Apple',
-                        'Macbook',
-                        'Chair',
-                        'Leather',
-                        'Clothing',
-                        'Bedroom',
-                        'Bathroom',
-                        'Couch',
-                        'Kitchen',
-                        'Living-Room',
-                        'Dinner-Table'
-                    ],
+                var list = tags,
                     textext = $(e.target).textext()[0],
                     query = (data ? data.query : '') || '';
 
@@ -213,7 +195,25 @@ $(function() {
     if (window.location.pathname === "/new-post/new-post.html") {
         checkIfVerified();
         initializeCampusTextExt();
-        initializeTagTextExt('#itemTags');
+        initializeTagTextExt('#itemTags', [
+            'Table',
+            'Desk',
+            'Computer',
+            'Electronics',
+            'iPhone',
+            'Cell-Phone',
+            'Apple',
+            'Macbook',
+            'Chair',
+            'Leather',
+            'Clothing',
+            'Bedroom',
+            'Bathroom',
+            'Couch',
+            'Kitchen',
+            'Living-Room',
+            'Dinner-Table'
+        ]);
     }
 
 

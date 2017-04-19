@@ -1,9 +1,16 @@
 .text-core {
   position: relative;
 }
+
 .text-core .text-wrap {
-  background: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+}
+
+.text-core .text-wrap:hover {
+  background-color: #fff;
 }
 .text-core .text-wrap textarea,
 .text-core .text-wrap input {
@@ -26,6 +33,16 @@
   font: 11px "lucida grande", tahoma, verdana, arial, sans-serif;
   line-height: 13px;
   height: auto;
+}
+
+.search-container .text-core .text-wrap textarea,
+.search-container .text-core .text-wrap input {
+  height: 47px;
+  line-height: 2.7rem;
+  padding-left: 10px;
+  font-size: 1rem;
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
 }
 
 .text-core .text-wrap textarea:focus {

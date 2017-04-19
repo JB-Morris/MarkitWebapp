@@ -6,6 +6,7 @@ $(function () {
     var populateSuggestionsInHub = require('./firebase.js')['populateSuggestionsInHub'];
     var getItemsById = require('./firebase.js')['getItemsById'];
     var getUserInfo = require('./firebase.js')['getUserInfo'];
+    let getCampusImage = require('./firebase.js')['getCampusImage'];
 
 
     var mostRecentItems = $('#hub-most-recent');
@@ -63,18 +64,31 @@ $(function () {
 
     var showUserInfo = function (userData) {
         $('#hub-username-blurb').text(userData.firstName);
-    }
+    };
 
     auth.onAuthStateChanged(function(user) {
-        if (user && $(mostRecentItems).length > 0) {
+        if (user && !user.isAnonymous && $(mostRecentItems).length > 0) {
             getUserInfo(auth.currentUser.uid, showUserInfo);
-            getRecentItemsInHub('Loyola Marymount University', showMostRecentItems);
+            getUserInfo(auth.currentUser.uid, loadCampusImage);
+            // TODO: Whatever this is down here breaks everything, figure out why
+            // getRecentItemsInHub('Loyola Marymount University', showMostRecentItems, 4);
             showSuggestions(populateSuggestionsInHub('Loyola Marymount University', auth.currentUser.uid));
+            // loadCampusImage(user);
         } else if (!user && $(mostRecentItems).length > 0) {
             window.location.href = "../index.html";
 
         }
-    });    
-    
+    });
+
+    let loadCampusImage = (user) => {
+        // console.log(user);
+        getCampusImage(user['userHub'].replace(/ /g, '-') + '.jpg', (url) => {
+            console.log('loadCampusImage');
+            if (url) {
+                console.log(url);
+                $('#campus-image').attr({src: url});
+            }
+        });
+    };
 
 });

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MarkIt - Hub</title>
+    <title>Vendyr - Hub</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
@@ -18,14 +18,14 @@
     <main>
 
       <div class="parallax-container">
-        <div class="parallax"><img src="http://admin.lmu.edu/media/admin/parking/mainbanner-parking.jpg"></div>
+        <div class="parallax"><img id="campus-image"></div>
       </div>
       <div class="container">
         <div class="section white" id="hub-first-divider">
           <a id="hub-change-button" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">business</i></a>
           <h2 class="header">Hi, <span id="hub-username-blurb"></span></h2>
           <p>
-            Welcome to your hub! 
+            Welcome to your hub!
           </p>
           <p id="hub-intro-blurb">
             Below are some relevant items for sale, users, and general information that's currently
@@ -40,7 +40,7 @@
           <div id="hub-recent-holder"></div>
           <script type="text/template" id="hub-most-recent">
             <% for (var specificItem in items) { %>
-            <%     var item = items[specificItem] %> 
+            <%     var item = items[specificItem] %>
               <div class="col l3 m4 s12">
                 <div class="card find-result hoverable">
                   <div class="find-result-favorite">
@@ -54,7 +54,7 @@
                   </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"> <%- item['title'] %> <i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">view item</a></p>
+                    <p><span class="view-item-detail">view item</span></p>
                   </div>
                   <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">
@@ -95,7 +95,7 @@
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
                   <p>
-                    <a href="#">view item</a>
+                    <span class="view-item-detail">view item</span>
                     <span class="card-view-hub"><%- item['hubs'] %></span>
                   </p>
                 </div>
@@ -108,7 +108,7 @@
               </div>
             </div>
             <% }; %>
-          </script>           
+          </script>
         </div>
 
         <div class="divider"></div>
@@ -118,7 +118,7 @@
 
         </div>
 
-             
+
       </div>
     </main>
 

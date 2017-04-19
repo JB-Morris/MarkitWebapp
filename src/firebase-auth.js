@@ -1,20 +1,20 @@
 "use strict"
 
-$(function() {
+$(() => {
     var auth = require('./firebase.js')["auth"];
     let uid;
     let navbarProfilePic;
     let profilePic;
     let profileName;
     let searchNavbar = $('.search-navbar');
-    
+
     var getProfilePicture = require('./firebase.js')["getProfilePicture"];
     var getUserInfo = require('./firebase.js')["getUserInfoProper"];
- 
+
     var updateNavbarName = function (profileName) {
         Promise.resolve(getUserInfo(uid)).then(userData => {
-            profileName.text(userData.username);
-        });        
+            profileName.text(userData.firstName);
+        });
     };
 
     var updateNavbarPic = function (navbarProfilePic) {
@@ -37,9 +37,13 @@ $(function() {
     }
 
     auth.onAuthStateChanged(function(user) {
-        if (user) {
+        if (user && !user.isAnonymous) {
             uid = auth.currentUser.uid;
-            
+
+            // if (window.location.pathname === "/signup/signup.html") {
+            //     window.location.href = '/'
+            // }
+
             $("#navbar-placeholder").load("../navbar/navbar-logged-in.html", function () {
                 navbarProfilePic = $('#navbar-user-photo');
                 profileName = $('#profile-name');
@@ -88,7 +92,7 @@ $(function() {
                     edge: 'right', // Choose the horizontal origin
                     closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
                     draggable: true // Choose whether you can drag to open on touch screens
-                });                
+                });
             });
         }
     });

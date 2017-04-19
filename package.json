@@ -20,8 +20,14 @@
   "bugs": {
     "url": "https://github.com/VicFrolov/Markit/issues"
   },
+  "eslintConfig": {
+    "env": {
+      "jquery": true
+    }
+  },
   "homepage": "https://github.com/VicFrolov/Markit#readme",
   "devDependencies": {
+    "eslint": "^3.19.0",
     "webpack": "^1.13.2"
   },
   "dependencies": {

@@ -19,10 +19,15 @@ var auth = firebase.auth();
 var itemsRef = database.ref('items/');
 var itemImagesRef = firebase.storage().ref('images/itemImages/');
 var userImagesRef = firebase.storage().ref('images/profileImages/');
+let campusImagesRef = firebase.storage().ref('images/hubImages/');
 var usersRef = database.ref('users/');
+const fbProvider = new firebase.auth.FacebookAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 
-var addProfilePicture = function (uid, image, callback) {
+var addProfilePicture = function (uid, image) {
+    console.log('image');
+    console.log(image);
     return new Promise(function(resolve, reject) {
         image = image.replace(/^.*base64,/g, '');
         var profilePicName = "imageOne";
@@ -43,14 +48,14 @@ var addProfilePicture = function (uid, image, callback) {
         }, function(error) {
             reject(error);
             console.log("error uploading image");
+            console.array[5];
         }, function() {
             var downloadURL = uploadTask.snapshot.downloadURL;
             resolve(downloadURL);
             $('#profile-picture').attr('src', downloadURL);
-
             $('#navbar-user-photo').attr('src', downloadURL);
         });
-        
+
     });
 };
 
@@ -65,7 +70,7 @@ var getProfilePicture = function (uid) {
 
 var sendVerificationEmail = function () {
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
+        if (user && !user.isAnonymous) {
             user.sendEmailVerification();
         }
     });
@@ -86,7 +91,8 @@ var addListing = function (title, description, tags, price, hubs, uid, images) {
         uid: uid,
         id: itemKey,
         hubs: hubs,
-        date: myDate
+        date: myDate,
+        views: 1
     };
 
     addTags(lowerCasedTags);
@@ -98,7 +104,7 @@ var addListing = function (title, description, tags, price, hubs, uid, images) {
     hubs.forEach(function(currentHub) {
         database.ref('itemsByHub/' + currentHub + '/').child(itemKey).set(itemData);
     });
-    
+
     // adding images to storage
     for (var i = 0; i < images.length; i += 1) {
         (function(x) {
@@ -126,6 +132,10 @@ var addListing = function (title, description, tags, price, hubs, uid, images) {
     }
 };
 
+const bumpViewCount = (itemID) => {
+
+};
+
 
 var getListings = function () {
     return itemsRef.once("value").then(function (snapshot) {
@@ -135,9 +145,9 @@ var getListings = function () {
     });
 };
 
-var getRecentItemsInHub = function (hub, callback) {
-    database.ref('itemsByHub/' + hub + '/').orderByKey().limitToLast(4).once('value').then(function (snapshot) {
-        callback(snapshot.val());
+var getRecentItemsInHub = function (hub, limit) {
+    return database.ref('itemsByHub/' + hub + '/').orderByKey().limitToLast(limit).once('value').then(function (snapshot) {
+        return snapshot.val();
     }, function (error) {
         console.log(error);
     });
@@ -148,7 +158,7 @@ var getRecentItemsInHub = function (hub, callback) {
 // of callback + promise
 var getFavorites = function (callback) {
     auth.onAuthStateChanged(function(user) {
-        if (user) {
+        if (user && !user.isAnonymous) {
             usersRef.child(auth.currentUser.uid + '/favorites/').once("value").then(function (snapshot) {
                 callback(snapshot.val());
             }, function (error) {
@@ -195,13 +205,38 @@ var updateUserInfo = function(uid, updatedInfo) {
     }
 };
 
-var getImage = function(address, callback) {
-    itemImagesRef.child(address).getDownloadURL().then(function(url) {
+var getImage = function(id, callback) {
+    auth.onAuthStateChanged( (user) => {
+        if (!user) {
+            anonymousSignIn();
+        } else {
+            getImageHelper(address, callback);
+        }
+    });
+    let address = itemImagesRef.child(id);
+    getImageHelper(address, callback);
+};
+
+const getImageHelper = (address, callback) => {
+    console.log(address);
+    address.getDownloadURL().then(function(url) {
         callback(url);
     }).catch(function(error) {
         console.log("error image not found");
         console.log("error either in item id, filename, or file doesn't exist");
     });
+};
+
+const getCampusImage = (campus, callback) => {
+    auth.onAuthStateChanged( (user) => {
+        if (!user) {
+            anonymousSignIn();
+        } else {
+            getImageHelper(address, callback);
+        }
+    });
+    let address = campusImagesRef.child(campus);
+    getImageHelper(address, callback);
 };
 
 var getFavoriteObjects = function (callback) {
@@ -236,11 +271,11 @@ var removeFavorite = function (item) {
         let item = snapshot.val()
         let itemTags = item['tags']
         for (let i = 0; i < itemTags.length; i += 1) {
-            usersRef.child(auth.currentUser.uid + 
+            usersRef.child(auth.currentUser.uid +
                 '/tagSuggestions/' + itemTags[i]).set(0.5);
         }
 
-    });    
+    });
 };
 
 var filterListings = function (keywords, hubs, tags, price_range) {
@@ -254,6 +289,13 @@ var signIn = function (email, password) {
     });
 };
 
+const anonymousSignIn = () => {
+    auth.signInAnonymously().catch( (error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+    });
+};
+
 var addNewListingToProfile = function(uid, itemID) {
     usersRef.child(uid + '/itemsForSale/' + itemID).set(true);
 };
@@ -261,7 +303,7 @@ var addNewListingToProfile = function(uid, itemID) {
 var addFavoriteToProfile = function(uid, itemID) {
     usersRef.child(uid + '/favorites/' + itemID).set(true);
     itemsRef.child(itemID + '/favorites/').child(auth.currentUser.uid).set(true);
-    
+
     //update suggested tags
     itemsRef.child(itemID).once('value').then(function(snapshot) {
         let item = snapshot.val()
@@ -270,7 +312,7 @@ var addFavoriteToProfile = function(uid, itemID) {
             usersRef.child(uid + '/tagSuggestions/' + itemTags[i]).set(1);
         }
 
-    });    
+    });
 
 };
 
@@ -290,35 +332,31 @@ var removeProfileTag = function (itemTitle) {
     usersRef.child(auth.currentUser.uid + '/tagsList/' + itemTitle).remove()
 };
 
-var createAccount = function () {
-    auth.createUserWithEmailAndPassword($("#sign-up-email").val(), 
-        $("#sign-up-password").val()).then(function(user) {
-            var newUser = firebase.auth().currentUser;
-            newUserDBEntry(newUser);
-        }, function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage);
-    });    
+const createAccount = function (email, pass, first, last) {
+    auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
+        let newUser = firebase.auth().currentUser;
+        newUserDBEntry(newUser, first, last);
+    }, function(error) {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorMessage);
+    });
 };
 
-var newUserDBEntry = function (user) {
-    var firstName = $("#sign-up-first-name").val();
-    var lastName = $("#sign-up-last-name").val();
-    var username = $("#sign-up-username").val();
-    var userHub = $("#sign-up-hub").val();
-    var defaultPreference = ["cash"];
-    var date =  Date();
+const newUserDBEntry = function (user, first, last) {
+    let defaultPreference = ["cash"];
+    let date =  Date();
 
-    var userInfo = {
+    let userInfo = {
         uid: user.uid,
         email: user.email,
-        username: username,
-        userHub: userHub,
-        firstName: firstName,
-        lastName: lastName,
+        userHub: 'Loyola Marymount University',
+        firstName: first,
+        lastName: last,
         paymentPreferences: defaultPreference,
-        dateCreated: date
+        dateCreated: date,
+        userRating: -1,
+        numberOfRatings: 0
     };
     usersRef.child(user.uid).set(userInfo);
 };
@@ -440,10 +478,11 @@ var sortConversations = function(uid, chatID) {
 
             previewMessages.push(messageObj);
         }
+
         // Wait for them all to complete
         Promise.all(promises).then(() => {
             previewMessages.sort(function(a, b){
-                return new Date(b.timeStamp).getTime() - new Date(a.timeStamp).getTime() 
+                return new Date(b.timeStamp).getTime() - new Date(a.timeStamp).getTime()
             });
 
             for (var i = 0; i < previewMessages.length; i += 1) {
@@ -515,8 +554,8 @@ var displayMessagesDetail = function (uid, chatID) {
 
     usersRef.child(`${uid}/chats/${chatID}/messages`).on('child_added', function(snapshot) {
         let message = snapshot.val();
-        let userClass = (message.user === auth.currentUser.uid ? 
-            'message-bubble-self' : 
+        let userClass = (message.user === auth.currentUser.uid ?
+            'message-bubble-self' :
             'message-bubble-other'
         );
 
@@ -524,7 +563,7 @@ var displayMessagesDetail = function (uid, chatID) {
             usersRef.child(`${uid}/chats/${chatID}/context/readMessages`).set(true);
             $('#message-detail-content').append($('<p></p>').addClass(userClass).text(message.text));
             $('#message-detail-content').fadeIn();
-            
+
             // sroll to bottom of chat
             var wtf = $('#message-detail-content');
             var height = wtf[0].scrollHeight;
@@ -594,7 +633,7 @@ var getUserSuggestions = function (uid) {
 
 var populateSuggestionsInHub = function(hub, uid) {
     return Promise.all([
-        getItemsInHub(hub), 
+        getItemsInHub(hub),
         getUserSuggestions(uid), getUserFavorites()]).then(function (results) {
             let itemsInHub = results[0];
             let userSuggestions = results[1];
@@ -617,7 +656,7 @@ var populateSuggestionsInHub = function(hub, uid) {
                             tagMatches[tag] = userSuggestions[tag];
                             tagMatchCount += 1;
                             tagWeight += userSuggestions[tag];
-                            
+
                         }
                     });
 
@@ -675,8 +714,82 @@ var populateSuggestionsInHub = function(hub, uid) {
             }
 
         });
-}
+};
 
+const facebookLogin = () => {
+    fbProvider.addScope('public_profile');
+    fbProvider.addScope('email');
+    fbProvider.addScope('user_education_history');
+    auth.signInWithPopup(fbProvider).then((result) => {
+        if (result.credential) {
+            const token = result.credential.accessToken;
+            let seperatedName = result.user.displayName.split(' ', 2);
+            let date = Date();
+            let defaultPreference = ['cash'];
+            let user = auth.currentUser;
+            console.log(result.user);
+
+            let userInfo = {
+                uid: user.uid,
+                email: result.user.email,
+                username: result.user.displayName,
+                userHub: null,
+                firstName: seperatedName[0],
+                lastName: seperatedName[1],
+                paymentPreferences: defaultPreference,
+                dateCreated: date
+            };
+            // addProfilePicture(user.uid, convertURLToImage(result.user.photoURL), addProfilePicture);
+            convertURLToImage(result.user.photoURL, user.uid, addProfilePicture);
+            usersRef.child(user.uid).set(userInfo);
+        }
+    });
+};
+
+const googleLogin = () => {
+    auth.signInWithRedirect(googleProvider);
+};
+
+const convertURLToImage = (url, userId, callback) => {
+    let canvas = document.createElement("canvas");
+    let context = canvas.getContext('2d');
+    let image = new Image();
+    image.src = url;
+    console.log(image);
+    image.onload = (userId) => {
+        context.drawImage(image, 100, 100);
+        let source = canvas.toDataURL('image/jpeg');
+        console.log(source);
+        callback(source);
+    }
+};
+
+// const convertURLToImage = (url, userId, callback) => {
+//     let $img = $('<img>', { width : 100, height : 100, src : url });
+//     // $img.onload = () => {
+//         let source = $img.toDataURL('image/jpg');
+//         console.log(source);
+//         callback(userId, source);
+//         $img.remove();
+//     // }
+// };
+
+let savePictureFromURL = (url) => {
+  let filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+  let xhr = new XMLHttpRequest();
+  xhr.responseType = 'blob';
+  xhr.onload = function() {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+    a.download = filename; // Set the file name.
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+  xhr.open('GET', url);
+  xhr.send().then();
+};
 
 module.exports = {
     auth,
@@ -687,6 +800,7 @@ module.exports = {
     addTags,
     filterListings,
     createAccount,
+    itemsRef,
     itemImagesRef,
     addFavoriteToProfile,
     getFavorites,
@@ -711,5 +825,9 @@ module.exports = {
     postNewMessage,
     sendVerificationEmail,
     getUserSelling,
-    setItemAsSold
+    setItemAsSold,
+    facebookLogin,
+    googleLogin,
+    anonymousSignIn,
+    getCampusImage
 };

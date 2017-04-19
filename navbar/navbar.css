@@ -13,8 +13,9 @@ nav {
 
 nav .brand-logo {
     color: #F4A49D;
-    font-weight: bold;
+    font-weight: 900;
     margin-left: 50px;
+    letter-spacing: -2px;
 }
 
 nav ul a {

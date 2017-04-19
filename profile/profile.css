@@ -104,22 +104,6 @@ main, body {
     position: relative;
 }
 
-/*TODO: Profile picture on mouseover shader*/
-
-/*#profile-picture-overlay {
-    background-color: black;
-    height: 100px;
-    width: 100px;
-    border-radius: 100px;
-    opacity: 0;
-}
-#profile-picture-overlay:hover {
-    opacity: 100;
-    margin-top: -50px;
-}*/
-
-
-
 .my-profile-username {
     font-size: 36px;
     position: relative;
@@ -217,9 +201,6 @@ main, body {
 
 .add-photo-button {
     maragin: 12;
-    /*position: relative;*/
-    /*left: 98px;
-    bottom: 3px;*/
     cursor: pointer;
 }
 

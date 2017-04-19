@@ -1,7 +1,7 @@
   <!DOCTYPE html>
 <html>
   <head>
-    <title>MarkIt - Find</title>
+    <title>Vendyr - Find</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css">
     <link href="../tag-plugin/textext.core.css" rel="stylesheet">
     <link href="../tag-plugin/textext.plugin.tags.css" rel="stylesheet">
-    <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">     
+    <link href="../tag-plugin/textext.plugin.autocomplete.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./find.css"  media="screen,projection"/>
-   
+
   </head>
 
   <body id="find-body">
@@ -32,7 +32,7 @@
               <textarea id="find-tags" rows="1" placeholder="(e.g. furniture, Apple, living-room)"></textarea>
               <label for="find-tags">Tags</label>
 
-            </div>  
+            </div>
             <div class="input-field col l4 m4 s12">
               <select id="find-hubs" multiple>
                 <option value="" disabled selected>Choose Hub(s)</option>
@@ -40,14 +40,14 @@
                 <option value="UCLA">UCLA</option>
               </select>
               <label>Select College Campuses</label>
-            </div>                 
+            </div>
           </div>
           <div class="search-slider-title">
             Price Range
           </div>
           <div id="search-slider">
-          </div>  
-          <a id="find-search-button" class="waves-effect waves-light btn">Search</a>      
+          </div>
+          <a id="find-search-button" class="waves-effect waves-light btn">Search</a>
         </div>
       </div>
       <!-- results card -->
@@ -61,33 +61,31 @@
           <script type="text/template" id="find-results-template">
             <% for (var specificItem in filteredItemList) { %>
             <%     var item = filteredItemList[specificItem] %>
-            <div class="col l4 m6 s12">
-              <div class="card find-result hoverable">
-                <div class="find-result-favorite">
-                  <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid=<%- item['id'] %>>
-                </div>
-                <div class="find-result-price">
-                  $ <%- item['price'] %>
-                </div>
-                <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="" id=<%- item['id'] %>>
-                </div>
-                <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
-                  <p>
-                    <a href="#">view item</a>
-                    <span class="card-view-hub"><%- item['hubs'] %></span>
-                  </p>
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">
-                    Description<i class="material-icons right">close</i>
-                    <p><%- item['description'] %></p>
-                  </span>
-                  <a class="waves-effect waves-light btn green lighten-2 card-contact">Contact Seller</a>
+              <div class="col l4 m6 s12">
+                <div class="card find-result hoverable">
+                  <div class="find-result-favorite">
+                    <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid=<%- item['id'] %>>
+                  </div>
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="" id=<%- item['id'] %>>
+                  </div>
+                  <div class="card-content">
+                    <span class="find-result-price">$<%- item['price'] %> - </span>
+                    <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
+                    <p>
+                      <span class="view-item-detail">view item</span>
+                      <span class="card-view-hub"><%- item['hubs'] %></span>
+                    </p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Description<i class="material-icons right">close</i>
+                      <p><%- item['description'] %></p>
+                    </span>
+                    <a class="waves-effect waves-light btn green lighten-2 card-contact">Contact Seller</a>
+                  </div>
                 </div>
               </div>
-            </div>
             <% }; %>
           </script>
         </div>
@@ -106,9 +104,9 @@
               <li class="tab col s6"><a href="#profile-tags">Tags</a></li>
             </ul>
           </div>
-          <div id="profile-favorites"> 
+          <div id="profile-favorites">
             <div id="favorite-holder"></div>
-            
+
             <script type="text/template" id="favorite-template">
               <%for (var favorite of favorites) { %>
                 <div class="favorite-element">
@@ -167,6 +165,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
     <script src="../tag-plugin/textext.core.js"></script>
     <script src="../tag-plugin/textext.plugin.tags.js"></script>
-    <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>    
+    <script src="../tag-plugin/textext.plugin.autocomplete.js"></script>
   </body>
 </html>

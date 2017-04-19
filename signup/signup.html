@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vendyr</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../navbar/navbar.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./signup.css"  media="screen,projection"/>
+    <link rel="shortcut icon" type="image/png" href="../media/favicon.png"/>
+  </head>
+
+  <body id="signup-body">
+    <header>
+      <div id="navbar-placeholder"> </div>
+    </header>
+
+    <main>
+      <div class="z-depth-1" id="signup-container">
+        <div id="login-popup-inner">
+          <p id="signup-blurb"> Join the vendyr Community</p>
+          <a class="waves-effect waves-light btn signup-inner-items z-depth-0" id="fb-login-button">Connect with Facebook</a>
+          <div class="crossline-wrapper">
+            <div> or </div>
+          </div>
+          <div class="row login-fields">
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="signup-names">Full Name <span class="signup-small-alert hide red-text text-darken-1" id="fullname-alert">(First and Last name required, both must be over 2 characters)</span></label>
+                  <input type="email" id="signup-names" placeholder="John Doe">
+                  <i class="small material-icons valid-entry-checkmark hide" id="checkmark-name">ic_check_circle</i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="signup-email">Email <span id="email-edu-blurb">(Must be .edu)</span></label>
+                  <input type="email" id="signup-email" placeholder="jDoe@lion.lmu.edu">
+                  <i class="small material-icons valid-entry-checkmark hide" id="checkmark-email">ic_check_circle</i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="signup-password">Password <span class="signup-small-alert hide red-text text-darken-1" id="password-alert">(Must be 8 or more characters)</span></label>
+                  <input id="signup-password" type="password" placeholder="Password">
+                  <i class="small material-icons valid-entry-checkmark hide" id="checkmark-password">ic_check_circle</i>
+                </div>
+              </div>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" class="filled-in checkbox-black" id="remember-me-checkbox2" />
+            <label for="remember-me-checkbox2">Remember Me</label>
+          </div>
+          <a class="waves-effect waves-light btn signup-inner-items" id="sign-up-button-container">Sign up</a>
+        </div>
+
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../bin/index.bundle.js"></script>
+  </body>
+</html>

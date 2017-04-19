@@ -1,0 +1,43 @@
+<div class="scroll-object">
+  <div class="left-scroll-arrow-container">
+    <i class="material-icons small right scroll-button scroll-left">keyboard_arrow_left</i>
+  </div>
+  <div class="outside-scroll-container">
+    <div class="inside-scroll-container">
+      <script type="text/template">
+        <% for (var specificItem in items) { %>
+        <%     var item = items[specificItem] %>
+          <div class="card find-result hoverable">
+            <div class="find-result-favorite">
+              <img class="find-result-favorite-image" src="../media/ic_heart.png" alt="heart" uid=<%- item['id'] %>>
+            </div>
+            <div class="card-image waves-effect waves-block waves-light">
+              <img src="" class="activator <%- item['id'] %>">
+            </div>
+            <div class="card-content">
+              <span class="find-result-price">$<%- item['price'] %> - </span>
+              <span class="card-title activator grey-text text-darken-4"><%- item['title'] %><i class="material-icons right">more_vert</i></span>
+              <p>
+                <span class="view-item-detail">view item</span>
+                <span class="card-view-hub"><%- item['hubs'] %></span>
+              </p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                Description<i class="material-icons right">close</i>
+                <p><%- item['description'] %></p>
+              </span>
+              <a class="waves-effect waves-light btn green lighten-2 card-contact">Contact Seller</a>
+            </div>
+          </div>
+        <% }; %>
+        <div class="see-more-card hoverable">
+          <p>See More</p>
+        </div>
+      </script>
+    </div>
+  </div>
+  <div class="right-scroll-arrow-container">
+    <i class="material-icons small right scroll-button scroll-right">keyboard_arrow_right</i>
+  </div>
+</div>

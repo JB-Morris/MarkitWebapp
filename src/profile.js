@@ -8,8 +8,8 @@ $(function () {
     var addTagToProfile = require('./firebase.js')['addTagToProfile'];
     var getProfileTags = require('./firebase.js')['getProfileTags'];
     var removeProfileTag = require('./firebase.js')['removeProfileTag'];
-    var nameSizeMin = require('./navbar-signup.js')['nameSizeMin'];
-    var nameSizeMax = require('./navbar-signup.js')['nameSizeMax'];
+    var nameSizeMin = require('./signup.js')['nameSizeMin'];
+    var nameSizeMax = require('./signup.js')['nameSizeMax'];
     var userImagesRef = require('./firebase.js')['userImagesRef'];
     var addProfilePicture = require('./firebase.js')['addProfilePicture'];
     var getProfilePicture = require('./firebase.js')['getProfilePicture'];
@@ -25,6 +25,7 @@ $(function () {
     var reader;
     var user;
     var uid;
+    let userRating;
     var firebaseUsername;
     var likedCardList = $('#profile-liked-card-list');
     var sellingCardList = $('#profile-selling-card-list');
@@ -38,6 +39,11 @@ $(function () {
     var lastName = $('#profile-last-name');
     var username = $('#profile-user-name');
     var hub = $('#profile-hub-name');
+    let star1 = $('#star-1');
+    let star2 = $('#star-2');
+    let star3 = $('#star-3');
+    let star4 = $('#star-4');
+    let star5 = $('#star-5');
     var paymentPreference;
     var emailNotifications = $('#email-notifications');
     var password = $('#profile-password');
@@ -55,7 +61,7 @@ $(function () {
 
             $('#profile-liked-holder').empty();
             $('#profile-liked-holder').append(compiled({items: items}));
-            
+
             for (var item in items) {
                 imagePaths.push(items[item]['id']);
             }
@@ -156,16 +162,39 @@ $(function () {
         firstName.val(userInfo.firstName);
         lastName.val(userInfo.lastName);
         username.val(userInfo.username);
+        userRating = (userInfo.userRating);
+
         firebaseUsername = userInfo.username;
         hub.val(userInfo.userHub);
         loadProfilePicture();
-        $('.my-profile-username').text(firebaseUsername);
+        $('.my-profile-username').text(userInfo.firstName);
+
         for (let preference in userInfo.paymentPreferences) {
             $("select[id$='profile-payment-preference'] option[value=" + userInfo.paymentPreferences[preference] + "]").attr("selected", true);
         }
 
         $('select').material_select();
+        postRating();
+    };
 
+    const postRating = () => {
+        if (userRating < 0) {
+            for (let star = 1; star <= 5; star += 1) {
+                $(`#star-${star}`).html('remove');
+                $('#star-5').tooltip({tooltip: 'not yet rated'});
+            }
+            return;
+        }
+        let flooredRating = Math.floor(userRating);
+        for (let star = 1; star <= flooredRating; star += 1) {
+            $(`#star-${star}`).html('star_rating');
+        }
+        $('#star-5').tooltip({tooltip: userRating});
+        if (userRating % 1 > 0.7) {
+            $(`#star-${flooredRating + 1}`).html('star_rating');
+        } else if (userRating % 1 > 0.3) {
+            $(`#star-${flooredRating + 1}`).html('star_half');
+        }
     };
 
     var checkInput = function (input) {
@@ -208,7 +237,7 @@ $(function () {
     }
 
     auth.onAuthStateChanged(function(user) {
-        if (user) {
+        if (user && !user.isAnonymous) {
             uid = auth.currentUser.uid;
             if (window.location.pathname === '/profile/profile.html') {
                 $('select').material_select();
@@ -275,7 +304,7 @@ $(function () {
             Materialize.toast('Only formats are allowed : ' + fileExtension.join(', '), 3000, 'rounded');
         } else {
             reader.onload = function (e) {
-                addProfilePicture(uid, e.target.result, loadProfilePicture);
+                addProfilePicture(uid, e.target.result);
             }
             reader.readAsDataURL($(this)[0].files[0]);
         }
